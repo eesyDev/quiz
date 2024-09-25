@@ -25,6 +25,7 @@ const config = {
                 },
                 gray: {
                     10: 'rgba(0, 0, 0, .1)',
+                    50: '#7b7b7b',
                     100: '#57575c'
                 },
                 black: {

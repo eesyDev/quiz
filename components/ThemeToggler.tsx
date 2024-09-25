@@ -25,7 +25,7 @@ const ThemeToggler = () => {
         <div className="night leading-8 text-xl w-[35px] flex items-center justify-center">
             <RiMoonClearLine/>
         </div>
-        <div className="toggler absolute bg-slate-400 dark:bg-slate-800 w-[30px] h-[30px] rounded-full left-[1px] top-[1px]"></div>
+        <div className="toggler absolute bg-slate-400 dark:bg-gray-50 w-[30px] h-[30px] rounded-full"></div>
     </div>
   )
 }

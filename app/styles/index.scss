@@ -10,13 +10,14 @@ body {
 }
 :root {
   --border-color: rgba(0,0,0,.1);
-  --bg-color: #19191c;
+  
+  --bg-color: #f9f9fa;
   --border-color-secondary: #232325;
 }
 
 [data-theme="dark"] {
   --border-color: rgba(255,255,255,.2);
-  --bg-color: #f9f9fa;
+  --bg-color: #19191c;
   --border-color-secondary: #c8c8d4;
 }
 
@@ -31,6 +32,21 @@ a {
   text-decoration: none;
 }
 
+.btn {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    padding-inline: 1rem;
+    padding-block: .75rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.btn--bordered {
+    border: 1px solid var(--border-color);
+}
 
 .header {
   padding: 1rem 0;
