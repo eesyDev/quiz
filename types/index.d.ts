@@ -4,3 +4,16 @@ declare type IUser = {
     userName: string;
     image: string;
 }
+
+declare interface StateContextType {
+    showMenu: boolean;
+    setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+declare interface StateContextProviderProps {
+    children: ReactNode;
+}
+
+declare interface ThemeState {
+    value: 'dark' | 'light'; 
+}

@@ -10,6 +10,7 @@ export default function RootLayout({
   return (
     <main>
         <Header/>
+        {children}
     </main>
   );
 }

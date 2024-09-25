@@ -4,17 +4,36 @@ import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { setAuthState } from '@/redux/slices/authSlice';
-import { useDispatch } from 'react-redux';
 import { client } from '@/utils/client';
+import Image from 'next/image';
+import { TbMenu } from "react-icons/tb";
+import { SideMenu } from '.';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '@/redux/rootReducer';
+import { toggleTheme } from '@/redux/slices/themeSlice';
+import { toggleMenu } from '@/redux/slices/showMenuSlice';
+import ThemeToggler from './ThemeToggler';
 
 const Header = () => {
     const [user, setUser] = useState<IUser | null>();
+    const theme = useSelector((state: RootState) => state?.theme?.value);
+    const {showMenu} = useSelector((state : RootState) => state.menu)
     const dispatch = useDispatch();
+
+    const handleToggle = () => {
+        dispatch(toggleTheme())
+    }
+
+    const handleOpenMenu = () => {
+        dispatch(toggleMenu())
+    }
+
+    console.log(showMenu)
 
     // useEffect(() => {
     //     setUser(userProfile);
     //   }, [userProfile]);
-    const createOrGetUser = async(response: any) => {
+    const createUser = async(response: any) => {
         const token = response.credential;
         const decoded: {name: string, picture: string, sub: string} = jwtDecode(token);
 
@@ -38,14 +57,28 @@ const Header = () => {
         } catch (error) {
             console.error("Error creating user in Sanity:", error);
         }
-        await axios.post('http://localhost:3000/api/user', user)
+        // await axios.post('/api/users', user)
     }
   return (
-    <div>
-        <GoogleLogin
-            onSuccess={(response) => createOrGetUser(response)}
-            onError={() => console.log('error')}
-        />
+    <div className='header border-gray-10'>
+        <div className="container">
+            <div className="header-wrapper flex justify-between">
+                <Image src='/icons/logo_white.svg' alt="logo" width={130} height={40}/>
+                <div className="header-actions flex items-center gap-4">
+                    <ThemeToggler/>
+                    <button className='burger-menu text-2xl text-gray-100' onClick={handleOpenMenu}>
+                        <TbMenu/>
+                    </button>
+                </div>
+                {  
+                    showMenu && <SideMenu/>
+                }
+                {/* <GoogleLogin
+                    onSuccess={(response) => createUser(response)}
+                    onError={() => console.log('error')}
+                /> */}
+            </div>
+        </div>
     </div>
   )
 }
