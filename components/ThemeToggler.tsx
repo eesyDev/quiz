@@ -4,11 +4,19 @@ import { RiMoonClearLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/rootReducer';
 
-import { toggleTheme } from '@/redux/slices/themeSlice';
+import { toggleTheme, setTheme } from '@/redux/slices/themeSlice';
 
 const ThemeToggler = () => {
     const theme = useSelector((state: RootState) => state.theme.value);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        // check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            dispatch(setTheme(savedTheme));
+        }
+    }, [dispatch]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme)

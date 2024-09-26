@@ -15,5 +15,14 @@ declare interface StateContextProviderProps {
 }
 
 declare interface ThemeState {
-    value: 'dark' | 'light'; 
+    value: string; 
+}
+
+declare interface Category {
+    _id: string,
+    title: string,
+    logo: object,
+    slug: {
+        current: string
+    } 
 }

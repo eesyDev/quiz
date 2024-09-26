@@ -1,10 +1,11 @@
 import React from 'react';
-import { Hero } from '@/components';
+import { Hero, GettingStarted } from '@/components';
 
 const Home = () => {
   return (
     <main className='text-success-700'>
       <Hero/>
+      <GettingStarted/>
     </main>
   )
 }

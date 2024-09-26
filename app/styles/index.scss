@@ -13,12 +13,15 @@ body {
   
   --bg-color: #f9f9fa;
   --border-color-secondary: #232325;
+  --m-border-gradient-before: linear-gradient(180deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, 0) 100%);
+  --box-color: #ffffff;
 }
 
 [data-theme="dark"] {
   --border-color: rgba(255,255,255,.2);
   --bg-color: #19191c;
   --border-color-secondary: #c8c8d4;
+  --box-color: #232325;
 }
 
 * {
@@ -101,3 +104,42 @@ a {
   width: 30px;
   border-radius: 100%;
 } */
+
+.category {
+  &-link {
+    background-color: var(--box-color);
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      background: var(--m-border-gradient-after) border-box;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
+      background: var(--m-border-gradient-before) border-box;
+    }
+    
+  }
+}

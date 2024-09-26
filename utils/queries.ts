@@ -4,3 +4,9 @@ export const allUsersQuery = () => {
     return query;
   };
   
+
+  export const allCategoriesQuery = () => {
+    const query = `*[_type == "category"]`;
+  
+    return query;
+  };

@@ -12,6 +12,20 @@ export default {
         name: 'description',
         title: 'Description',
         type: 'text'
+      },
+      {
+        name: 'logo',
+        title: 'Logo',
+        type: 'image'
+      },
+      {
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'title',
+          maxLength: 60
+      }
       }
     ]
   };

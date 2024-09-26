@@ -33,7 +33,8 @@ const config = {
                     mid: '#232325e6'
                 },
                 white: {
-                    bg: '#f9f9fa'
+                    bg: '#f9f9fa',
+                    border: 'rgba(255, 255, 255, .1)'
                 }
             }
         }

@@ -17,7 +17,7 @@ import ThemeToggler from './ThemeToggler';
 const Header = () => {
     const [user, setUser] = useState<IUser | null>();
     const theme = useSelector((state: RootState) => state?.theme?.value);
-    const {showMenu} = useSelector((state : RootState) => state.menu)
+    const {showMenu} = useSelector((state : RootState) => state.menu);
     const dispatch = useDispatch();
 
     const handleToggle = () => {
@@ -28,7 +28,7 @@ const Header = () => {
         dispatch(toggleMenu())
     }
 
-    console.log(showMenu)
+    const srcLogo = theme === 'dark' ? '/icons/logo_white.svg' : '/icons/logo_dark.svg'
 
     // useEffect(() => {
     //     setUser(userProfile);
@@ -63,7 +63,7 @@ const Header = () => {
     <div className='header border-gray-10'>
         <div className="container">
             <div className="header-wrapper flex justify-between">
-                <Image src='/icons/logo_white.svg' alt="logo" width={130} height={40}/>
+                <Image src={srcLogo} alt="logo" width={130} height={40}/>
                 <div className="header-actions flex items-center gap-4">
                     <ThemeToggler/>
                     <button className='burger-menu text-2xl text-gray-100' onClick={handleOpenMenu}>
