@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Hero } from '@/components';
 
 const Home = () => {
   return (
-    <div className='text-success-700'>page</div>
+    <main className='text-success-700'>
+      <Hero/>
+    </main>
   )
 }
 
