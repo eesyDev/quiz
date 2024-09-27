@@ -15,6 +15,7 @@ body {
   --border-color-secondary: #232325;
   --m-border-gradient-before: linear-gradient(180deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, 0) 100%);
   --box-color: #ffffff;
+  --box-hover-color: #d9d9d9;
 }
 
 [data-theme="dark"] {
@@ -22,6 +23,7 @@ body {
   --bg-color: #19191c;
   --border-color-secondary: #c8c8d4;
   --box-color: #232325;
+  --box-hover-color: #434343;
 }
 
 * {
@@ -115,6 +117,10 @@ a {
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: all .2s linear;
+    &:hover {
+      background-color: var(--box-hover-color);
+    }
     &:after {
       content: "";
       position: absolute;
@@ -141,5 +147,94 @@ a {
       background: var(--m-border-gradient-before) border-box;
     }
     
+  }
+}
+
+.language-heading {
+  display: flex;
+  justify-content: center;
+  outline: none;
+  position: relative;
+  height: fit-content;
+  z-index: 5;
+  &-inner {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+      justify-content: space-between;
+      width: 100%;
+      border-radius: 10px;
+      transition: all 0.2s ease 0s;
+      cursor: pointer;
+      user-select: none;
+      color: var(--color-text);
+      box-shadow: none;
+      background: none;
+      min-height: 25px;
+      padding: 0px;
+  }
+  .language-title-icon {
+      display: flex;
+      align-items: center;
+      svg, img {
+          width: 15px;
+          height: auto;
+      }
+      p {
+          margin-left: 7px;
+      }
+  }
+  &.open {
+      .language-dropdown {
+          opacity: 1;
+      }
+  }
+}
+.language-dropdown {
+  z-index: 10;
+  border-radius: 10px;
+  outline: none;
+  position: absolute;
+  background-color: var(--box-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 40px;
+  will-change: opacity;
+  transition: opacity 0.2s ease-in-out;
+  min-width: 70px;
+  opacity: 0;
+  top: calc(100% + 6px);
+  width: 100%;
+  left: auto;
+  width: max-content;
+  menu {
+      margin: 12px;
+      padding: 0px;
+      list-style: none;
+      overflow: hidden auto;
+      display: grid;
+      gap: 2px;
+      max-height: 230px;
+      position: relative;
+  }
+  &-item {
+      font-size: 16px;
+      list-style: none;
+      border-radius: 10px;
+      padding: 8px;
+      // background-color: var(--color-border);
+      cursor: pointer;
+      transition: background-color 0.2s ease 0s;
+      div {
+          display: flex;
+          align-items: center;
+          svg, img {
+              width: 15px;
+              height: auto;
+          }
+          p {
+              line-height: normal;
+              margin-left: 7px;
+          }
+      }
   }
 }

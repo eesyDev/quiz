@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/rootReducer';
 import { toggleTheme } from '@/redux/slices/themeSlice';
 import { toggleMenu } from '@/redux/slices/showMenuSlice';
-import ThemeToggler from './ThemeToggler';
+import {LangToggler, ThemeToggler} from '.';
 
 const Header = () => {
     const [user, setUser] = useState<IUser | null>();
@@ -66,6 +66,7 @@ const Header = () => {
                 <Image src={srcLogo} alt="logo" width={130} height={40}/>
                 <div className="header-actions flex items-center gap-4">
                     <ThemeToggler/>
+                    <LangToggler/>
                     <button className='burger-menu text-2xl text-gray-100' onClick={handleOpenMenu}>
                         <TbMenu/>
                     </button>

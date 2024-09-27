@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from 'react';
 import { LuSunDim } from "react-icons/lu";
 import { RiMoonClearLine } from "react-icons/ri";

@@ -18,6 +18,10 @@ declare interface ThemeState {
     value: string; 
 }
 
+declare interface LocaleState {
+    value: string; 
+}
+
 declare interface Category {
     _id: string,
     title: string,
