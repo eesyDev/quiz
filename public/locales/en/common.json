@@ -1,1 +1,6 @@
-{}
+{
+    "hero_title" : "Learn how to code like a pro, check your knowledge",
+    "hero_subtitle" : "Appwrite helps you build secure and scalable apps, faster. Leverage Appwrite's powerful APIs to stop fighting technologies and start delivering value.",
+    "hero_sec_title" : "Start learning modern technologies and stacks",
+    "hero_sec_subtitle" : "Develop applications on the most modern libraries or on pure JS without using libraries and frameworks"
+}
