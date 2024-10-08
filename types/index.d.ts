@@ -30,3 +30,14 @@ declare interface Category {
         current: string
     } 
 }
+
+declare interface LevelDataProps {
+    title: {
+        ru: string,
+        en: string
+    },
+    slug: {
+        current: string
+    },
+    difficulty: number
+}

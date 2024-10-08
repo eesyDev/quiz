@@ -6,9 +6,11 @@ import { client, urlFor } from '@/utils/client';
 import { allCategoriesQuery } from '@/utils/queries';
 import Link from 'next/link';
 import { RootState } from '@/redux/rootReducer';
+import { useTranslation } from 'next-i18next';
 
 const GettingStarted = () => {
 	const [categories, setCategories] = useState([]);
+	const { t } = useTranslation('common');
 
 	useEffect(() => {
 		client.fetch(allCategoriesQuery()).then(data => setCategories(data))
@@ -30,7 +32,7 @@ const GettingStarted = () => {
 					<img src={srcImg} alt="techs" />
 				</div>
 				{categories && (
-					<ul className='categories flex gap-4 items-center flex-wrap max-w-[600px]'>
+					<ul className='categories flex gap-4 items-center flex-wrap max-w-[600px] mb-8'>
 						{categories?.map((category : Category) => (
 							<li key={category._id} className='category'>
 								<Link href={`/category/${category?.slug?.current}`} className='gradirnt-border category-link'>
@@ -46,6 +48,7 @@ const GettingStarted = () => {
 						))}
 					</ul>
 				)}
+				<Link href={'/category/all'} className="btn btn--secondary">{t("category_btn")}</Link>
             </div>
         </section>
     )

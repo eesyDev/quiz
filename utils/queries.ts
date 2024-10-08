@@ -10,3 +10,9 @@ export const allUsersQuery = () => {
   
     return query;
   };
+
+export const singleCategoryLevel = (category: string) => {
+  const query = `*[_type == "level"]`
+
+  return query
+}

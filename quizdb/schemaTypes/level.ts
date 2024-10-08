@@ -1,3 +1,4 @@
+import localizedString from './localazedString';
 export default {
     name: 'level',
     title: 'Level',
@@ -6,14 +7,23 @@ export default {
       {
         name: 'title',
         title: 'Title',
-        type: 'string'
+        type: 'localizedString'
       },
       {
-        name: 'category',
-        title: 'Category',
-        type: 'reference',
-        to: [{ type: 'category' }]
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+            source: 'title',
+            maxLength: 60
+        }
       },
+      // {
+      //   name: 'category',
+      //   title: 'Category',
+      //   type: 'reference',
+      //   to: [{ type: 'category' }]
+      // },
       {
         name: 'difficulty',
         title: 'Difficulty Level',

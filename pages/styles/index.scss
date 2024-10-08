@@ -14,8 +14,12 @@ body {
   --bg-color: #f9f9fa;
   --border-color-secondary: #232325;
   --m-border-gradient-before: linear-gradient(180deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, 0) 100%);
+  --m-border-gradient-pink-before: linear-gradient(180deg, rgba(253, 54, 110, .19) 0%, rgba(253, 54, 110, .48) 100%);
+    --m-border-gradient-pink-after: radial-gradient(42.86% 42.86% at 50.55% 0%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, 0) 100%);
   --box-color: #ffffff;
   --box-hover-color: #d9d9d9;
+  --m-border-radius: .5rem;
+  --m-border-size: .0625rem;
 }
 
 [data-theme="dark"] {
@@ -51,6 +55,51 @@ a {
 
 .btn--bordered {
     border: 1px solid var(--border-color);
+}
+
+.btn--secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fd366e14;
+    box-shadow: none;
+  color: rgb(253, 53, 110);
+  position: relative;
+  border-radius: .5rem;
+  gap: .5rem;
+  padding-inline: .875rem;
+  padding-block: .4375rem;
+  min-block-size: 2.5rem;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--m-border-radius);
+    border: var(--m-border-size, 1px) solid transparent;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+    background: var(--m-border-gradient-pink-before) border-box;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--m-border-radius);
+    border: var(--m-border-size, 1px) solid transparent;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+    background: var(--m-border-gradient-pink-after) border-box;
+}
 }
 
 .header {

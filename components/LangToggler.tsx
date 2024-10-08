@@ -34,6 +34,7 @@ const LangToggler = () => {
         // i18n.changeLanguage(newLocale);
         localStorage.setItem('locale', newLocale); 
         dispatch(setLocale(newLocale)); 
+        setIsOpenDropdown(!isOpenDropdown)
     };
 
     console.log(locale)
