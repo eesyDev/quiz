@@ -11,8 +11,26 @@ export const allUsersQuery = () => {
     return query;
   };
 
-export const singleCategoryLevel = (category: string) => {
+export const allLevels = () => {
   const query = `*[_type == "level"]`
 
   return query
 }
+
+export const categoryQuestions = (category: string) => {
+  const query = `*[_type == "question" && category == ${category}]`
+
+  return query
+}
+
+export const questionsByCategoryAndLevel = (categorySlug: string, level: string) => {
+  return `*[_type == "question" && category.slug.current == "${categorySlug}" && difficulty == ${level}]{
+      title,
+      body,
+      category->{
+          title,
+          slug
+      },
+      difficulty
+  }`;
+};
