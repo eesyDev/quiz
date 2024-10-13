@@ -41,3 +41,20 @@ declare interface LevelDataProps {
     },
     difficulty: number
 }
+
+declare interface QuestionDataProps {
+    title: {
+        ru: string,
+        en: string
+    },
+    slug: {
+        current: string
+    },
+    difficulty: number
+}
+
+declare interface CategoryPropsData {
+    levels: LevelDataProps[],
+    allQuestions: QuestionDataProps[],
+    questionsByLevel: QuestionDataProps[]
+}

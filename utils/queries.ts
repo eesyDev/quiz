@@ -18,13 +18,13 @@ export const allLevels = () => {
 }
 
 export const categoryQuestions = (category: string) => {
-  const query = `*[_type == "question" && category == ${category}]`
+  const query = `*[_type == "question" && category->slug.current == "${category}"]`
 
   return query
 }
 
 export const questionsByCategoryAndLevel = (categorySlug: string, level: string) => {
-  return `*[_type == "question" && category.slug.current == "${categorySlug}" && difficulty == ${level}]{
+  return `*[_type == "question" && category->slug.current == "${categorySlug}" && level._ref == ${level}]{
       title,
       body,
       category->{
