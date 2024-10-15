@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Layout } from '@/components';
+import { Layout, QuestionCard } from '@/components';
 import axios from 'axios';
 import { BASE_URL } from '@/utils';
 import { useTranslation } from 'next-i18next';
@@ -13,8 +13,9 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
 	const [questions, setQuestions] = useState<any[]>(data.allQuestions || []);
     const { locale, query, replace, push } = useRouter();
     const currentLocale = locale as 'ru' | 'en';
+	// const currentLocale = (locale === 'ru' || locale === 'en') ? locale : 'ru';
 	const { slug, level } = query;
-
+	console.log(data)
 	useEffect(() => {
 		if (level && typeof level === 'string') {
 		  setSelectedLevel(level);
@@ -29,20 +30,19 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
 
 
 	    // Обновление данных при изменении выбранного уровня
-		useEffect(() => {
-			if (selectedLevel) {
-			  // Выполняем запрос к API при изменении уровня
-			  const fetchQuestions = async () => {
-				try {
-				  const res = await axios.get(`${BASE_URL}/api/${slug}`, { params: { level: selectedLevel } });
-				  setQuestions(res.data.questions || []); // Обновляем вопросы в состоянии
-				} catch (error) {
-				  console.error('Error fetching questions:', error);
-				}
-			  };
-			  fetchQuestions();
-			}
-		  }, [selectedLevel, slug]);
+		// useEffect(() => {
+		// 	if (selectedLevel) {
+		// 	  const fetchQuestions = async () => {
+		// 		try {
+		// 		  const res = await axios.get(`${BASE_URL}/api/${slug}`, { params: { level: selectedLevel }});
+		// 		  setQuestions(res.data.questions || []); // Обновляем вопросы в состоянии
+		// 		} catch (error) {
+		// 		  console.error('Error fetching questions:', error);
+		// 		}
+		// 	  };
+		// 	  fetchQuestions();
+		// 	}
+		//   }, [selectedLevel, slug]);
     
     if (!data) {
         return (
@@ -61,7 +61,7 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
             <div className='category'>
                 <div className="container">
                     <div className="category-level-filter flex gap-4 py-4">
-                        <div className="level">{t("all_levels")}</div>
+                        <div className="level" onClick={() => replace(`/category/${slug}`, undefined, { shallow: true })}>{t("all_levels")}</div>
                         {data?.levels?.map((level, index) => (
                             <div
 							key={index}
@@ -72,6 +72,14 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
                             </div>
                         ))}
                     </div>
+					<h2 className="h2">{t("questions")}</h2>
+					<div className="questions-wrapper flex gap-6 flex-wrap">
+						{
+							data?.allQuestions?.map((question, index) => {
+								const questiontxt = question?.questionText?.[currentLocale][0].children[0].text || ''
+							return <QuestionCard key={index} title={question.title[currentLocale]} level={question.level._type} text={questiontxt} answers={question.answers} />})
+						}
+					</div>
                 </div>
             </div>
         </Layout>

@@ -4,5 +4,7 @@
     "hero_sec_title" : "Start learning modern technologies and stacks",
     "hero_sec_subtitle" : "Develop applications on the most modern libraries or on pure JS without using libraries and frameworks",
     "category_btn" : "Explore all categories",
-    "all_levels" : "All levels"
+    "all_levels" : "All levels",
+    "questions" : "Questions",
+    "no_data" : "No Data"
 }

@@ -20,6 +20,7 @@ body {
   --box-hover-color: #d9d9d9;
   --m-border-radius: .5rem;
   --m-border-size: .0625rem;
+  --code-bg: #1e1e1e;
 }
 
 [data-theme="dark"] {
@@ -28,8 +29,64 @@ body {
   --border-color-secondary: #c8c8d4;
   --box-color: #232325;
   --box-hover-color: #434343;
+  --code-bg: #1e1e1e;
+}
+.code-post pre {
+  background-color: var(--code-bg);
+  border-radius: 4px;
+  overflow: auto;
+  font-size: 14px;
+  margin-bottom: 2.1rem;
+  padding: 2.7rem 0 1.6rem 1.25rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background-image: url('../../public/icons/window-buttons_gt8xoXxWn.png');
+  background-repeat: no-repeat;
+  background-size: 44px 10px;
+  background-position: 16px 14px;
+}
+code[class*=language-], pre[class*=language-] {
+  color: #9cdcfe;
+  font-size: 13px;
+  text-shadow: none;
+  font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
 }
 
+.language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
+  color: #d4d4d4;
+}
+
+.token.atrule, .token.attr-value, .token.keyword {
+  color: #569cd6;
+}
+
+.token.attr-name, .token.char, .token.inserted, .token.selector, .token.string {
+  color: #ce9178;
+}
+.token.builtin, .token.class-name {
+  color: #4ec9b0;
+}
+.token.punctuation {
+  color: #d4d4d4;
+}
+.token.function {
+  color: #dcdcaa;
+}
+.token.interpolation, .token.parameter {
+  color: #9cdcfe;
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -130,7 +187,7 @@ a {
 }
 
 [data-theme="dark"] .theme-toggle .toggler {
-  transform: translateX(34px);
+  transform: translateX(33px);
 }
 
 .side-menu {
@@ -286,4 +343,24 @@ a {
           }
       }
   }
+}
+
+.question-card {
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  transition: background-color 0.2s ease 0s;
+  width: calc(33.33% - 1rem);
+  &:hover {
+    background-color: var(--box-hover-color);
+  }
+}
+
+.question-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.vars {
+  font-size: 0.85rem;
 }

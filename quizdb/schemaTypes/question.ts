@@ -57,7 +57,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title.ru' // Указываем, что берем значение title на английском языке
+      title: 'title.ru'
     }
   }
 };

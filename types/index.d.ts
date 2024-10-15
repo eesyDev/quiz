@@ -44,17 +44,38 @@ declare interface LevelDataProps {
 
 declare interface QuestionDataProps {
     title: {
-        ru: string,
-        en: string
-    },
+        ru: string;
+        en: string;
+    };
     slug: {
-        current: string
-    },
-    difficulty: number
+        current: string;
+    };
+    difficulty: number;
+    level: any;
+    questionText?: {
+        ru: {
+            children: { text: string }[];
+        }[];
+        en: {
+            children: { text: string }[];
+        }[];
+    } | undefined;
+    answers?: {
+        answerText: string
+    }[];
 }
 
 declare interface CategoryPropsData {
     levels: LevelDataProps[],
     allQuestions: QuestionDataProps[],
     questionsByLevel: QuestionDataProps[]
+}
+
+declare interface QuestionProps {
+    title: string,
+    level: any,
+    text?: string,
+    answers?: {
+        answerText: string
+    }[];
 }
