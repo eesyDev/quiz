@@ -39,7 +39,7 @@ export default {
         {
           type: 'object',
           fields: [
-            { name: 'answerText', title: 'Answer Text', type: 'string' },
+            { name: 'answerText', title: 'Answer Text', type: 'localizedString' },
             { name: 'isCorrect', title: 'Is Correct', type: 'boolean' }
           ]
         }

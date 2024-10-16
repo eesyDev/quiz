@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/rootReducer';
 import Markdown from 'react-markdown'
 
-const QuestionCard = ({ title, level, text, answers} : QuestionProps) => {
+const QuestionCard = ({ title, level, text, answers, locale} : QuestionProps) => {
     const theme = useSelector((state: RootState) => state?.theme?.value);
     // const style = theme === 'dark' ? vscDarkPlus : vs;
 
@@ -31,7 +31,9 @@ const QuestionCard = ({ title, level, text, answers} : QuestionProps) => {
             answers && 
             <div className="vars mt-4">
                 {answers.map((answer, index) => (
-                    <div key={index}>{answer.answerText}</div>
+                    <div key={index}>
+                        {answer.answerText.en ? answer.answerText[locale as 'en' | 'ru'] : answer.answerText.ru}
+                    </div>
                 ))}
             </div>
         }

@@ -9,15 +9,6 @@ export default {
         title: 'Title',
         type: 'localizedString'
       },
-      {
-        name: 'slug',
-        title: 'Slug',
-        type: 'slug',
-        options: {
-            source: 'title',
-            maxLength: 60
-        }
-      },
       // {
       //   name: 'category',
       //   title: 'Category',
@@ -29,7 +20,16 @@ export default {
         title: 'Difficulty Level',
         type: 'number',
         description: 'For example, 1 = Easy, 5 = Hard'
-      }
+      },
+      {
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'title.en',
+          maxLength: 200,
+        },
+      },
     ]
   };
   

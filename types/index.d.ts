@@ -39,7 +39,8 @@ declare interface LevelDataProps {
     slug: {
         current: string
     },
-    difficulty: number
+    difficulty: number,
+    _id: string
 }
 
 declare interface QuestionDataProps {
@@ -61,14 +62,26 @@ declare interface QuestionDataProps {
         }[];
     } | undefined;
     answers?: {
-        answerText: string
+        answerText: {
+            en?: string,
+            ru: string 
+        }
     }[];
+}
+
+declare interface Quiz {
+    title: {
+        en?: string,
+        ru: string 
+    },
+    category: string
 }
 
 declare interface CategoryPropsData {
     levels: LevelDataProps[],
     allQuestions: QuestionDataProps[],
-    questionsByLevel: QuestionDataProps[]
+    questionsByLevel: QuestionDataProps[],
+    quizData: Quiz[]
 }
 
 declare interface QuestionProps {
@@ -76,6 +89,10 @@ declare interface QuestionProps {
     level: any,
     text?: string,
     answers?: {
-        answerText: string
-    }[];
+        answerText: {
+            en?: string,
+            ru: string 
+        }
+    }[],
+    locale: string
 }
