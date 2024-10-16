@@ -6,5 +6,7 @@
     "category_btn" : "Все категории",
     "all_levels" : "Все уровни",
     "questions" : "Вопросы",
-    "no_data" : "Нет данных"
+    "no_data" : "Нет данных",
+    "all_categories": "Все категории",
+    "question_qtt": "Количество вопросов"
 }

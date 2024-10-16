@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { setAuthState } from '@/redux/slices/authSlice';
 import { client } from '@/utils/client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { TbMenu } from "react-icons/tb";
 import { SideMenu } from '.';
 import { useSelector, useDispatch } from 'react-redux';
@@ -63,7 +64,7 @@ const Header = () => {
     <div className='header border-gray-10'>
         <div className="container">
             <div className="header-wrapper flex justify-between">
-                <Image src={srcLogo} alt="logo" width={130} height={40}/>
+                <Link href="/"><Image src={srcLogo} alt="logo" width={130} height={40}/></Link>
                 <div className="header-actions flex items-center gap-4">
                     <ThemeToggler/>
                     <LangToggler/>

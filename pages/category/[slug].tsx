@@ -1,32 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { Layout } from '@/components';
+import { Layout, QuizCard } from '@/components';
 import axios from 'axios';
 import { BASE_URL } from '@/utils';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { selectCategories, fetchCategories } from '@/redux/slices/categoriesSlice';
 
 const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
     const { t } = useTranslation('common');
-    const [selectedLevel, setSelectedLevel] = useState<string | null>(null);  // Фильтр по уровню
-    const [quizData, setQuizData] = useState<any[]>(data.quizData || []);
-    const [loading, setLoading] = useState(false);  // Для индикации загрузки
+    const [selectedLevel, setSelectedLevel] = useState<string | null>(null); 
+    const [quizData, setQuizData] = useState<any[]>(data?.quizData || []);
+    const [loading, setLoading] = useState(false); 
     const { locale, query, replace } = useRouter();
     const currentLocale = locale as 'ru' | 'en';
     const { slug } = query;
+    const categories: Category[] = useSelector(selectCategories);
+    const currentCategory = categories.find(category => category.slug.current === slug);
+
+    console.log(data.quizData)
 
     useEffect(() => {
         const fetchQuestionsAndQuiz = async () => {
-            setLoading(true);  // Начало загрузки
+            setLoading(true);  
             try {
                 const res = selectedLevel
-                    ? await axios.get(`${BASE_URL}/api/${slug}`, { params: { level: selectedLevel } })  // С фильтром по уровню
-                    : await axios.get(`${BASE_URL}/api/${slug}`);  // Без фильтрации по уровню
+                    ? await axios.get(`${BASE_URL}/api/${slug}`, { params: { level: selectedLevel } })
+                    : await axios.get(`${BASE_URL}/api/${slug}`); 
 
-                setQuizData(res.data.quizData || []);  // Устанавливаем полученные данные
+                setQuizData(res.data.quizData || []); 
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
-                setLoading(false);  // Завершение загрузки
+                setLoading(false); 
             }
         };
 
@@ -37,13 +43,14 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
         <Layout>
             <div className='category'>
                 <div className="container">
+                    <h4 className="typo-h2 my-4">{currentCategory && currentCategory?.title}</h4>
                     <div className="category-level-filter flex gap-4 py-4">
-                        {/* Кнопка для загрузки всех уровней */}
+                        
                         <div
                             className="level"
                             onClick={() => {
-                                setSelectedLevel(null);  // Сброс выбранного уровня
-                                replace(`/category/${slug}`, undefined, { shallow: true });  // Обновляем URL без уровня
+                                setSelectedLevel(null); 
+                                replace(`/category/${slug}`, undefined, { shallow: true }); 
                             }}
                         >
                             {t("all_levels")}
@@ -54,7 +61,7 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
                                 className={`level ${selectedLevel === level["_id"] ? 'selected' : ''}`}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    setSelectedLevel(level["_id"]);  // Устанавливаем выбранный уровень
+                                    setSelectedLevel(level["_id"]); 
                                     replace(`/category/${slug}?level=${level.slug.current}`, undefined, { shallow: true });
                                 }}
                             >
@@ -63,17 +70,20 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
                         ))}
                     </div>
 
-                    {/* Отображение квизов */}
                     {loading ? (
-                        <p>{t("loading")}</p>  // Индикация загрузки
+                        <p>{t("loading")}</p>  
                     ) : quizData.length === 0 ? (
-                        <p>{t("no_quizzes_found")}</p>  // Если квизы не найдены
+                        <p>{t("no_quizzes_found")}</p> 
                     ) : (
                         <div className="quiz-wrapper flex flex-wrap gap-6">
                             {quizData.map((quiz, index) => (
-                                <div className="quiz-card" key={index}>
-                                    {quiz.title[currentLocale]}
-                                </div>
+                                <QuizCard
+                                    title={quiz.title}
+                                    icon={quiz.icon}
+                                    questions={quiz.questions}
+                                    slug={quiz.slug.current}
+                                    key={index}
+                                />
                             ))}
                         </div>
                     )}
@@ -81,6 +91,25 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
             </div>
         </Layout>
     );
+};
+
+export const getServerSideProps = async ({ params: { slug, level } }: { params: { slug: string, level: string } }) => {
+    try {
+        const res = await axios.get(`${BASE_URL}/api/${slug}`, {params: { level: level || null }});
+        return {
+            props: {
+                data: res.data, // Передача данных через props
+            },
+        };
+    } catch (error) {
+        console.error(error);
+        return {
+            props: {
+                data: [], // Передача пустого массива в случае ошибки
+                error: 'Failed to fetch data',
+            },
+        };
+    }
 };
 
 export default CategoryItem;

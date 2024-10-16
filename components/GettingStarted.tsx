@@ -1,21 +1,28 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { client, urlFor } from '@/utils/client';
 import { allCategoriesQuery } from '@/utils/queries';
 import Link from 'next/link';
 import { RootState } from '@/redux/rootReducer';
 import { useTranslation } from 'next-i18next';
+import { selectCategories, fetchCategories } from '@/redux/slices/categoriesSlice';
+import { AppDispatch } from '@/redux/store';
 
 const GettingStarted = () => {
-	const [categories, setCategories] = useState([]);
+	// const [categories, setCategories] = useState([]);
 	const { t } = useTranslation('common');
+	const categories = useSelector(selectCategories);
+	const dispatch = useDispatch<AppDispatch>()
+
+	// useEffect(() => {
+	// 	client.fetch(allCategoriesQuery()).then(data => setCategories(data))
+	// }, []);
 
 	useEffect(() => {
-		client.fetch(allCategoriesQuery()).then(data => setCategories(data))
-	}, []);
-
+        dispatch(fetchCategories());
+    }, [dispatch]);
 	const themeMode = useSelector((state: RootState) => state.theme.value);
 	const srcImg = themeMode === 'dark' ? './icons/techs.svg' : './icons/tech-white.svg'
 
@@ -35,7 +42,7 @@ const GettingStarted = () => {
 					<ul className='categories flex gap-4 items-center flex-wrap max-w-[600px] mb-8'>
 						{categories?.map((category : Category) => (
 							<li key={category._id} className='category'>
-								<Link href={`/category/${category?.slug?.current}`} className='gradirnt-border category-link'>
+								<Link href={`/category/${category?.slug?.current}`} className='gradient-border category-link'>
 									<Image 
 										src={urlFor(category?.logo).url()} 
 										alt={category.title} 

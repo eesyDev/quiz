@@ -22,15 +22,6 @@ declare interface LocaleState {
     value: string; 
 }
 
-declare interface Category {
-    _id: string,
-    title: string,
-    logo: object,
-    slug: {
-        current: string
-    } 
-}
-
 declare interface LevelDataProps {
     title: {
         ru: string,
@@ -69,13 +60,13 @@ declare interface QuestionDataProps {
     }[];
 }
 
-declare interface Quiz {
-    title: {
-        en?: string,
-        ru: string 
-    },
-    category: string
-}
+// declare interface Quiz {
+//     title: {
+//         en?: string,
+//         ru: string 
+//     },
+//     category: string
+// }
 
 declare interface CategoryPropsData {
     levels: LevelDataProps[],
@@ -84,6 +75,15 @@ declare interface CategoryPropsData {
     quizData: Quiz[]
 }
 
+declare interface Category {
+    title: string,
+    _id: string,
+    title: string,
+    logo: object,
+    slug: {
+        current: string
+    },
+}
 declare interface QuestionProps {
     title: string,
     level: any,
@@ -95,4 +95,15 @@ declare interface QuestionProps {
         }
     }[],
     locale: string
+}
+
+declare interface QuizCardProps {
+    title: {
+        en?: string,
+        ru: string 
+    },
+    icon: string,
+    // category: string,
+    slug: string,
+    questions: []
 }

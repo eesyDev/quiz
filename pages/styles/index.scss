@@ -17,7 +17,7 @@ body {
   --m-border-gradient-pink-before: linear-gradient(180deg, rgba(253, 54, 110, .19) 0%, rgba(253, 54, 110, .48) 100%);
     --m-border-gradient-pink-after: radial-gradient(42.86% 42.86% at 50.55% 0%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, 0) 100%);
   --box-color: #ffffff;
-  --box-hover-color: #d9d9d9;
+  --box-hover-color: #ebebeb;
   --m-border-radius: .5rem;
   --m-border-size: .0625rem;
   --code-bg: #1e1e1e;
@@ -63,7 +63,9 @@ code[class*=language-], pre[class*=language-] {
   -ms-hyphens: none;
   hyphens: none;
 }
-
+.gradient-border {
+  border-color: var(--m-border-gradient-before);
+}
 .language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
   color: #d4d4d4;
 }
@@ -158,7 +160,22 @@ a {
     background: var(--m-border-gradient-pink-after) border-box;
 }
 }
+.web-grid-row-4 {
+  --p-gap: 1.25rem;
+  display: grid;
+  gap: var(--p-gap);
+}
 
+.typo-h2 {
+  color: rgb(87, 87, 92);
+  font-size: 2.5rem;
+  letter-spacing: -0.01rem;
+}
+.typo-h4 {
+  color: rgb(87, 87, 92);
+  font-size: 1.8rem;
+  letter-spacing: -0.01rem;
+}
 .header {
   padding: 1rem 0;
   position: sticky;
@@ -363,4 +380,23 @@ a {
 
 .vars {
   font-size: 0.85rem;
+}
+
+.category-expanded {
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  gap: .5rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  &:hover {
+    background-color: var(--box-hover-color);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .web-grid-row-4 {
+      grid-template-columns: repeat(4, 1fr);
+  }
 }

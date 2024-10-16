@@ -9,6 +9,15 @@ export default {
             type: 'localizedString'
           },
           {
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: {
+              source: 'title.en',
+              maxLength: 60
+            }
+          },
+          {
             name: 'level',
             title: 'Level',
             type: 'reference',
@@ -21,10 +30,15 @@ export default {
             to: [{ type: 'category' }] 
           },
           {
+            name: 'icon',
+            title: 'Icon',
+            type: 'string'
+          },
+          {
             name: 'questions',
             title: 'Questions',
             type: 'array',  
-            of: [{ type: 'reference', to: { type: 'question' } }] // Ссылки на вопросы
+            of: [{ type: 'reference', to: { type: 'question' } }]
           }
     ],
     preview: {
