@@ -14,6 +14,7 @@ const QuestionCard = ({ title, level, text, answers, locale} : QuestionProps) =>
             Prism.highlightAll();
         }
     }, []);
+    
   return (
     <div className='question-card'>
         <h3 className="question-title">{title}</h3>

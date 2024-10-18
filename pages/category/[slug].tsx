@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 import { Layout, QuizCard } from '@/components';
 import axios from 'axios';
@@ -75,7 +76,7 @@ const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
                     ) : quizData.length === 0 ? (
                         <p>{t("no_quizzes_found")}</p> 
                     ) : (
-                        <div className="quiz-wrapper flex flex-wrap gap-6">
+                        <div className="quiz-wrapper grid-cols-1 grid xl:grid-cols-4 gap-6 md:grid-cols-3 mt-8">
                             {quizData.map((quiz, index) => (
                                 <QuizCard
                                     title={quiz.title}

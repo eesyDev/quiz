@@ -85,11 +85,17 @@ declare interface Category {
     },
 }
 declare interface QuestionProps {
-    title: string,
+    title: {
+        en?: string,
+        ru: string 
+    },
     level: any,
-    text?: string,
+    text?: {
+        en?: string,
+        ru: string 
+    },
     answers?: {
-        answerText: {
+        answerText?: {
             en?: string,
             ru: string 
         }
@@ -106,4 +112,8 @@ declare interface QuizCardProps {
     // category: string,
     slug: string,
     questions: []
+}
+
+declare interface QuizData {
+    quizData: [QuizCardProps]
 }

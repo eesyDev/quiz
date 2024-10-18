@@ -3,6 +3,8 @@
     "hero_subtitle" : "Appwrite helps you build secure and scalable apps, faster. Leverage Appwrite's powerful APIs to stop fighting technologies and start delivering value.",
     "hero_sec_title" : "Start learning modern technologies and stacks",
     "hero_sec_subtitle" : "Develop applications on the most modern libraries or on pure JS without using libraries and frameworks",
+    "getting_started_title": "Start learning current technologies and stacks",
+    "getting_started_subtitle" : "Develop applications on the most modern libraries or on pure JS without using libraries and frameworks",
     "category_btn" : "Explore all categories",
     "all_levels" : "All levels",
     "questions" : "Questions",

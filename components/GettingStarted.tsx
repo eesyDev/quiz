@@ -30,8 +30,8 @@ const GettingStarted = () => {
         <section className='relative mt-8'>
             <div className="container">
 				<div className="hero-sec flex flex-col gap-4 border-t border-gray-10 py-20 dark:border-white-border">
-					<h2 className="h2 max-w-[600px] text-4xl">Начни изучать актуальные технологии и стеки</h2>
-					<p className='text-xl text-gray-100 max-w-[600px]'>Разрабатывай приложения на самых современных библиотеках или на чистом JS без использования библиотек и фреймворков</p>
+					<h2 className="h2 max-w-[600px] text-4xl">{t("getting_started_title")}</h2>
+					<p className='text-xl text-gray-100 max-w-[600px]'>{t("getting_started_subtitle")}</p>
 				</div>
 				<div className="techs-icons absolute max-w-[400px] top-8 right-[5rem]">
 					{/* <Image src='' alt='' width={}/> */}

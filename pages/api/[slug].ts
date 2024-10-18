@@ -13,9 +13,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         let questionsDataQuery;
         let quizesDataQuery;
-
-        console.log(level)
-        console.log(slug)
         
         // Если level не передан, запрашиваем все вопросы по категории
         if (!level || typeof level !== 'string') {

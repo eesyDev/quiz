@@ -21,6 +21,8 @@ body {
   --m-border-radius: .5rem;
   --m-border-size: .0625rem;
   --code-bg: #1e1e1e;
+  --text-color: #57575c;
+  --text-light-color: #939399;
 }
 
 [data-theme="dark"] {
@@ -30,6 +32,7 @@ body {
   --box-color: #232325;
   --box-hover-color: #434343;
   --code-bg: #1e1e1e;
+  --text-color: #d3d3d3;
 }
 .code-post pre {
   background-color: var(--code-bg);
@@ -167,13 +170,19 @@ a {
 }
 
 .typo-h2 {
-  color: rgb(87, 87, 92);
+  color: var(--text-color);
   font-size: 2.5rem;
   letter-spacing: -0.01rem;
 }
 .typo-h4 {
-  color: rgb(87, 87, 92);
+  color: var(--text-color);
   font-size: 1.8rem;
+  letter-spacing: -0.01rem;
+}
+
+.typo-h5 {
+  color: var(--text-color);
+  font-size: 1.4rem;
   letter-spacing: -0.01rem;
 }
 .header {
@@ -367,7 +376,6 @@ a {
   border: 1px solid var(--border-color);
   border-radius: 1rem;
   transition: background-color 0.2s ease 0s;
-  width: calc(33.33% - 1rem);
   &:hover {
     background-color: var(--box-hover-color);
   }
@@ -389,7 +397,34 @@ a {
   gap: .5rem;
   padding: 1.25rem;
   border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  &:hover {
+    background-color: var(--box-hover-color);
+  }
+}
+
+.quiz-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  border-radius: 1rem;
+  transition: all .2s ease;
+  .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    font-size: 3rem;
+  }
+  .qnt {
+    color: var(--text-light-color);
+  }
   &:hover {
     background-color: var(--box-hover-color);
   }

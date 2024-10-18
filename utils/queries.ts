@@ -39,6 +39,18 @@ export const quizesCatAndLevel = (category: string, level: string) => {
   return query;
 }
 
+export const singleQuiz = (slug: string) => {
+  const query = `*[_type == "quiz" && slug.current == "${slug}"]{
+    title,
+    slug,
+    questions[]->{title, _id, answers[], questionText},
+    category->{title, slug},
+    level->{title, _id}
+  }`;
+
+  return query
+}
+
 
 export const questionsByCategoryAndLevel = (categorySlug: string, level: string) => {
   return `*[_type == "question" && category->slug.current == "${categorySlug}" && level._ref == "${level}"]{
