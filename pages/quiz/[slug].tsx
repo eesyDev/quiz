@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Layout, QuestionCard } from '@/components';
 import { BASE_URL } from '@/utils';
@@ -9,22 +9,58 @@ import { title } from 'process';
 const QuizDetail = ({ data }: { data: QuizData }) => {
     const { locale } = useRouter();
     const currentLocale = locale as 'ru' | 'en';
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const { quizData } = data
-    console.log(quizData[0]?.questions)
+    const [answers, setAnswers] = useState({});
+
+    // Функция для обновления ответа на вопрос
+    const handleAnswerSelect = (_key: string, answer: string) => {
+        setAnswers(prev => ({
+            ...prev,
+            [_key]: answer
+        }));
+    };
+
+    const handleNextQuestion = () => {
+        if (currentQuestionIndex < quizData[0].questions.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+          alert('Quiz completed!');
+        }
+      };
+
+      const currentQuestion = quizData[0].questions[currentQuestionIndex];
+      console.log(currentQuestion)
   return (
     <Layout>
-        <div className="container">
+        <div className="container container-sm">
             <h2 className="typo-h2">{quizData[0].title[currentLocale]}</h2>
-            <div className="quiz-questions-wrapper grid-cols-1 grid xl:grid-cols-3 gap-6 md:grid-cols-2 mt-8">
-            {quizData && quizData[0].questions.length && quizData[0].questions.map((q, i) => (
+            <div className="quiz-questions-wrapper grid-cols-1 grid gap-6 mt-8">
+            {/* {quizData && quizData[0].questions.length && quizData[0].questions.map((q, i) => (
                 <QuestionCard
-                    title={q.title[currentLocale]}
+                    _id={q['_id']}
+                    title={q?.title && q?.title}
                     level={1}
                     locale={currentLocale}
-                    text={q?.questionText?.[currentLocale][0].children[0].text ? q?.questionText?.[currentLocale][0].children[0].text : ''}
-                    answers={q.answers && q?.answers}
+                    questionText={q?.questionText}
+                    answers={q?.answers || []}
+                    onAnswerSelect={handleAnswerSelect}
                 />
-            ))}
+            ))} */}
+
+        <QuestionCard
+        _id={currentQuestion['_id']}
+        title={currentQuestion.title}
+        questionText={currentQuestion.questionText}
+        answers={currentQuestion.answers}
+        level={1}
+        locale={currentLocale}
+        onAnswerSelect={handleAnswerSelect}
+      />
+      
+      <button onClick={handleNextQuestion} className='btn btn--filled'>
+        {currentQuestionIndex < quizData[0].questions.length - 1 ? 'Следующий вопрос' : 'Завершить'}
+      </button>
             </div>
         </div>
     </Layout>

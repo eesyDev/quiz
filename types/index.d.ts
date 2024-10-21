@@ -85,23 +85,35 @@ declare interface Category {
     },
 }
 declare interface QuestionProps {
+    _id: string,
     title: {
         en?: string,
         ru: string 
     },
-    level: any,
-    text?: {
-        en?: string,
-        ru: string 
+    level: number | string,
+    questionText?: {
+        en?: [
+            {children: [
+                {text: string}
+            ]}
+        ],
+        ru: [
+            {children: [
+                {text: string}
+            ]}
+        ],
     },
-    answers?: {
-        answerText?: {
-            en?: string,
-            ru: string 
-        }
-    }[],
-    locale: string
+    answers?: Answer[],
+    locale: string,
+    onAnswerSelect: (questionId: string, answer: string) => void;
 }
+
+interface Answer {
+    answerText: {
+      en?: string;
+      ru: string;
+    };
+  }
 
 declare interface QuizCardProps {
     title: {
@@ -111,9 +123,9 @@ declare interface QuizCardProps {
     icon: string,
     // category: string,
     slug: string,
-    questions: []
+    questions: QuestionProps[]
 }
 
 declare interface QuizData {
-    quizData: [QuizCardProps]
+    quizData: QuizCardProps[]
 }
