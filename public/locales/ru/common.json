@@ -12,7 +12,8 @@
     "all_categories": "Все категории",
     "categories": "Категории",
     "question_qtt": "Количество вопросов",
-    "terms": "Terms",
-    "privacy" : "Privacy",
-    "cookies" : "Cookies"
+    "terms": "Условия",
+    "privacy" : "Политика конфиденциальсти",
+    "cookies" : "Cookies",
+    "search_in_test": "Искать вопросы"
 }

@@ -13,10 +13,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/rootReducer';
 import { toggleTheme } from '@/redux/slices/themeSlice';
 import { toggleMenu } from '@/redux/slices/showMenuSlice';
-import {LangToggler, ThemeToggler} from '.';
+import { LangToggler, ThemeToggler } from '.';
 
 const Header = () => {
     const [user, setUser] = useState<IUser | null>();
+    const [isOpenMenu, setIsOpenMenu] = useState<Boolean>(false)
     const theme = useSelector((state: RootState) => state?.theme?.value);
     const {showMenu} = useSelector((state : RootState) => state.menu);
     const dispatch = useDispatch();
@@ -27,7 +28,10 @@ const Header = () => {
 
     const handleOpenMenu = () => {
         dispatch(toggleMenu())
+        setIsOpenMenu(!isOpenMenu)
     }
+
+    console.log(isOpenMenu)
 
     const srcLogo = theme === 'dark' ? './icons/logo_white.svg' : './icons/logo_dark.svg'
 
@@ -66,9 +70,7 @@ const Header = () => {
             <div className="header-wrapper flex justify-between">
                 <Link href="/"><Image src={srcLogo} alt="logo" width={130} height={40}/></Link>
                 <div className="header-actions flex items-center gap-4">
-                    <ThemeToggler/>
-                    <LangToggler/>
-                    <button className='burger-menu text-2xl text-gray-100' onClick={handleOpenMenu}>
+                    <button className={`${isOpenMenu ? "opened " : ""}burger-menu text-2xl text-gray-100`} onClick={handleOpenMenu}>
                         <TbMenu/>
                     </button>
                 </div>

@@ -14,5 +14,6 @@
     "question_qtt": "Number of questions",
     "terms": "Terms",
     "privacy" : "Privacy",
-    "cookies" : "Cookies"
+    "cookies" : "Cookies",
+    "search_in_test": "Search in tests"
 }
