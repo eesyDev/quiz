@@ -17,33 +17,29 @@ const all = () => {
   useEffect(() => {
     dispatch(fetchCategories());
 }, [dispatch]);
-
-  const themeMode = useSelector((state: RootState) => state.theme.value);
-	const srcImg = themeMode === 'dark' ? './icons/techs.svg' : './icons/tech-white.svg'
-  console.log(categories)
   return (
     <Layout>
       <div className="container">
 	  <h4 className="typo-h2 my-4">{t("all_categories")}</h4>
         <div className="categories-wrapper">
         {categories && (
-					<ul className='categories web-grid-row-4 items-center flex-wrap'>
-						{categories?.map((category : Category) => (
-							<li key={category._id} className='category'>
-								<Link href={`/category/${category?.slug?.current}`} className='gradient-border category-expanded flex gap-4'>
-									<Image 
-										src={urlFor(category?.logo).url()} 
-										alt={category.title} 
-										width={35} 
-										height={35} 
-										className="category-logo" 
-									/>
-									<h4 className='font-medium text-lg'>{category.title}</h4>
-								</Link>
-							</li>
-						))}
-					</ul>
-				)}
+			<ul className='categories web-grid-row-4 items-center flex-wrap'>
+				{categories?.map((category : Category) => (
+					<li key={category._id} className='category'>
+						<Link href={`/category/${category?.slug?.current}`} className='gradient-border category-expanded flex gap-4'>
+							<Image 
+								src={urlFor(category?.logo).url()} 
+								alt={category.title} 
+								width={35} 
+								height={35} 
+								className="category-logo" 
+							/>
+							<h4 className='font-medium text-lg'>{category.title}</h4>
+						</Link>
+					</li>
+				))}
+			</ul>
+		)}
         </div>
       </div>
     </Layout>

@@ -10,5 +10,9 @@
     "questions" : "Вопросы",
     "no_data" : "Нет данных",
     "all_categories": "Все категории",
-    "question_qtt": "Количество вопросов"
+    "categories": "Категории",
+    "question_qtt": "Количество вопросов",
+    "terms": "Terms",
+    "privacy" : "Privacy",
+    "cookies" : "Cookies"
 }

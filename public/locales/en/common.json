@@ -10,5 +10,9 @@
     "questions" : "Questions",
     "no_data" : "No Data",
     "all_categories": "All Categories",
-    "question_qtt": "Number of questions"
+    "categories": "Categories",
+    "question_qtt": "Number of questions",
+    "terms": "Terms",
+    "privacy" : "Privacy",
+    "cookies" : "Cookies"
 }

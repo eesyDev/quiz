@@ -29,7 +29,7 @@ const Header = () => {
         dispatch(toggleMenu())
     }
 
-    const srcLogo = theme === 'dark' ? '/icons/logo_white.svg' : '/icons/logo_dark.svg'
+    const srcLogo = theme === 'dark' ? './icons/logo_white.svg' : './icons/logo_dark.svg'
 
     // useEffect(() => {
     //     setUser(userProfile);
