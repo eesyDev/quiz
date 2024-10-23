@@ -5,13 +5,19 @@ export default {
     fields: [
         {
             name: 'userName',
-            title: 'UseerName',
+            title: 'UserName',
             type: 'string',
         },
         {
             name: 'image',
             title: 'Image',
             type: 'string'
+        },
+        { 
+          name: 'role', 
+          type: 'string', 
+          title: 'Role', 
+          options: { list: ['admin', 'mentor', 'student'] } 
         }
     ]
 }

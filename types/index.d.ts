@@ -1,8 +1,9 @@
 declare type IUser = {
     _id: string;
     _type: string;
-    userName: string;
+    name: string;
     image: string;
+    email: string
 }
 
 declare interface StateContextType {
@@ -129,3 +130,4 @@ declare interface QuizCardProps {
 declare interface QuizData {
     quizData: QuizCardProps[]
 }
+
