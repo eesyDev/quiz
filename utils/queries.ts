@@ -63,3 +63,13 @@ export const questionsByCategoryAndLevel = (categorySlug: string, level: string)
       difficulty
   }`;
 };
+
+export const userQuery = (userId: string) => {
+  return `*[_type == "user" && _id == "${userId}"][0]{
+    userName,
+    email,
+    image,
+    "quizzes": *[_type == "quiz" && author._ref == ^._id],
+    "questions": *[_type == "question" && author._ref == ^._id]
+  }`
+} ;

@@ -1,9 +1,15 @@
-declare type IUser = {
+declare interface IUser {
     _id: string;
     _type: string;
     name: string;
     image: string;
     email: string
+}
+
+declare interface IUserExt extends IUser {
+    quizzes: QuizDetail[],
+    questions: QuestionProps[],
+    userName: string
 }
 
 declare interface StateContextType {

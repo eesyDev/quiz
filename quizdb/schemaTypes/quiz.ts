@@ -39,6 +39,12 @@ export default {
             title: 'Questions',
             type: 'array',  
             of: [{ type: 'reference', to: { type: 'question' } }]
+          },
+          {
+            name: 'author',
+            title: 'Author',
+            type: 'reference',
+            to: [{ type: 'user' }]  // Автор квиза
           }
     ],
     preview: {

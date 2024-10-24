@@ -53,6 +53,12 @@ export default {
       type: 'string',
       hidden: ({ document }: { document: any }) => document?.hasOptions, // Скрывать для вопросов с вариантами ответа
       description: 'For open-ended questions, provide the correct answer here.'
+    },
+    {
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'user' }]
     }
   ],
   preview: {

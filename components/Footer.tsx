@@ -13,7 +13,7 @@ const Footer = () => {
     const categories = useSelector(selectCategories);
     const { t } = useTranslation('common');
     const theme = useSelector((state: RootState) => state?.theme?.value);
-    const srcLogo = theme === 'dark' ? './icons/logo_white.svg' : './icons/logo_dark.svg';
+    const srcLogo = theme === 'dark' ? '/icons/logo_white.svg' : '/icons/logo_dark.svg';
 
     const socials = [
       {

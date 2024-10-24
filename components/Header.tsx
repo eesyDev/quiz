@@ -30,19 +30,17 @@ const Header = () => {
            setUser(session?.user)
         }
      }, [session]); 
-     console.log(session)
-     console.log(user)
 
     const handleToggle = () => {
         dispatch(toggleTheme())
     }
 
     const handleOpenMenu = () => {
-        // dispatch(toggleMenu())
+        dispatch(toggleMenu())
         setIsOpenMenu(!isOpenMenu)
     }
 
-    const srcLogo = theme === 'dark' ? './icons/logo_white.svg' : './icons/logo_dark.svg';
+    const srcLogo = theme === 'dark' ? '/icons/logo_white.svg' : '/icons/logo_dark.svg';
 
     const generateUserId = (email: string) => {
         return email.replace(/[^a-zA-Z0-9_-]/g, '');
@@ -93,10 +91,19 @@ const Header = () => {
             <div className="header-wrapper flex justify-between">
                 <Link href="/"><Image src={srcLogo} alt="logo" width={130} height={40}/></Link>
                 <div className="header-actions flex items-center gap-4">
+                    
+                    {isLoggedIn ?
+                    <>
+                    Hello, {user?.name}!
+                    <Link href="/auth/profile">
+                        <a className="btn">Личный кабинет</a> {/* <-- Кнопка-ссылка в личный кабинет */}
+                    </Link>
+                    </>
+                     : <button onClick={handleGoogleLogin}>Войти с Google</button>}
+
                     <button className={`${isOpenMenu ? "opened " : ""}burger-menu text-2xl text-gray-100`} onClick={handleOpenMenu}>
                         <TbMenu/>
                     </button>
-                    {isLoggedIn ? `Hello, ${user?.name}!` : <button onClick={handleGoogleLogin}>Войти с Google</button>}
                     
                 </div>
                 {  
