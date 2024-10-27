@@ -9,7 +9,7 @@ import { client } from '@/utils/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TbMenu } from "react-icons/tb";
-import { SideMenu } from '.';
+import SideMenu from './SideMenu';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/rootReducer';
 import { toggleTheme } from '@/redux/slices/themeSlice';

@@ -4,7 +4,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import { GetStaticPropsContext } from 'next';
-import { Header, Hero, GettingStarted, Layout } from "@/components";
+// import { Hero, GettingStarted, Layout } from "@/components";
+import Hero from '../components/Hero';
+import GettingStarted from '../components/GettingStarted';
+import Layout from '../components/Layout'
 
 
 export const metadata: Metadata = {

@@ -3,7 +3,8 @@ import { LuSearch } from "react-icons/lu";
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {LangToggler, ThemeToggler} from '.';
+import LangToggler from './LangToggler';
+import ThemeToggler  from './ThemeToggler';
 import { sideMenu } from '@/utils';
 
 const SideMenu = () => {

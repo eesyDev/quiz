@@ -9,6 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.1.1",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.7",
     "@sanity/cli": "^3.57.3",
@@ -17,8 +23,11 @@
     "@types/prismjs": "^1.26.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "i18next": "^23.11.2",
     "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.453.0",
     "markdown": "^0.5.0",
     "next": "14.2.0",
     "next-auth": "^4.24.8",
@@ -34,7 +43,9 @@
     "react-markdown": "^9.0.1",
     "react-redux": "^9.1.2",
     "react-syntax-highlighter": "^15.5.0",
-    "tailwindcss": "^3.4.12"
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss": "^3.4.12",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
