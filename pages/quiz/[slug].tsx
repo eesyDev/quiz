@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Layout, QuestionCard } from '@/components';
+import Layout from '../../components/Layout';
+import QuestionCard from '../../components/QuestionCard';
 import { BASE_URL } from '@/utils';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { title } from 'process';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
 
 const QuizDetail = ({ data }: { data: QuizData }) => {
     const { locale } = useRouter();
@@ -12,22 +14,15 @@ const QuizDetail = ({ data }: { data: QuizData }) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const { quizData } = data
     const [answers, setAnswers] = useState({});
+    const dispatch = useDispatch();
 
-    // Функция для обновления ответа на вопрос
-    const handleAnswerSelect = (_key: string, answer: string) => {
-        setAnswers(prev => ({
-            ...prev,
-            [_key]: answer
-        }));
+    const handleAnswerSelect = (key: string, answer: string) => {
+        dispatch(selectAnswer({ key, answer }));
     };
-
+    
     const handleNextQuestion = () => {
-        if (currentQuestionIndex < quizData[0].questions.length - 1) {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-        } else {
-          alert('Quiz completed!');
-        }
-      };
+        dispatch(nextQuestion());
+    };
 
       const currentQuestion = quizData[0].questions[currentQuestionIndex];
       console.log(currentQuestion)
@@ -56,6 +51,7 @@ const QuizDetail = ({ data }: { data: QuizData }) => {
         level={1}
         locale={currentLocale}
         onAnswerSelect={handleAnswerSelect}
+        isAuthor={true}
       />
       
       <button onClick={handleNextQuestion} className='btn btn--filled'>

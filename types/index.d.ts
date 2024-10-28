@@ -113,6 +113,7 @@ declare interface QuestionProps {
     answers?: Answer[],
     locale: string,
     onAnswerSelect: (questionId: string, answer: string) => void;
+    isAuthor: boolean
 }
 
 interface Answer {

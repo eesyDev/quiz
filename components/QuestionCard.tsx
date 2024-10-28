@@ -6,7 +6,7 @@ import { RootState } from '@/redux/rootReducer';
 import Markdown from 'react-markdown';
 import { useRouter } from 'next/router';
 
-const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSelect, _id} : QuestionProps) => {
+const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSelect, _id, isAuthor} : QuestionProps) => {
     const theme = useSelector((state: RootState) => state?.theme?.value);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -23,14 +23,16 @@ const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSel
     }, [_id]);
 
     const handleAnswerSelect = (answer: string) => {
-        if (!isSubmitted) {
+        if (!isSubmitted && !isAuthor) {
             setSelectedAnswer(answer);
         }
     };
 
     const handleSubmit = () => {
-        setIsSubmitted(true); 
-        onAnswerSelect(_id, selectedAnswer || ''); 
+        if (!isAuthor) {
+            setIsSubmitted(true); 
+            onAnswerSelect(_id, selectedAnswer || ''); 
+        }
     };
     console.log(selectedAnswer)
   return (
@@ -72,6 +74,7 @@ const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSel
                                   : ''
                               )}
                             readOnly
+                            disabled={isAuthor}
                             style={{ display: 'none' }}
                         />
                         {locale === 'en' && answer.answerText.en ? answer.answerText[locale as 'en' | 'ru'] : answer.answerText.ru}
@@ -79,7 +82,7 @@ const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSel
                 </div>
                 ))}
                 {/* Показать кнопку "Ответить" только если выбран ответ и ответ ещё не отправлен */}
-                    {selectedAnswer && !isSubmitted && (
+                    {selectedAnswer && !isSubmitted && !isAuthor && (
                         <button className="submit-btn btn btn--filled mt-4" onClick={handleSubmit}>
                             Ответить
                         </button>

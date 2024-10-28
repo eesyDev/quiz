@@ -23,16 +23,16 @@ const categoriesSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCategories.pending, (state) => {
-                state.loading = true;  // Начинаем загрузку
-                state.error = null;    // Сбрасываем ошибку
+                state.loading = true;  
+                state.error = null;   
             })
             .addCase(fetchCategories.fulfilled, (state, action) => {
-                state.loading = false;  // Останавливаем загрузку
-                state.categories = action.payload;  // Обновляем категории
+                state.loading = false;  
+                state.categories = action.payload;  
             })
             .addCase(fetchCategories.rejected, (state, action) => {
-                state.loading = false;  // Останавливаем загрузку
-                state.error = action.error.message;  // Устанавливаем ошибку
+                state.loading = false;  
+                state.error = action.error.message;  
             });
     }
 });
