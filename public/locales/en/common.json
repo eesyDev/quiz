@@ -15,5 +15,13 @@
     "terms": "Terms",
     "privacy" : "Privacy",
     "cookies" : "Cookies",
-    "search_in_test": "Search in tests"
+    "search_in_test": "Search in tests",
+    "my_questions": "My Questions",
+    "my_quizes" : "My Quizes",
+    "self_info": "About me",
+    "create_question" : "Create question",
+    "profile_text" : "Управляйте настройками и предпочтениями своей учетной записи.",
+    "please_log_in" : "Please log in to view your profile.",
+    "loading" : "Loading...",
+    "no_quiz_yet" : "You don't have any quizzes yet."
 }

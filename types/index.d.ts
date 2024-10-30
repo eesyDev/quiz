@@ -64,7 +64,20 @@ declare interface QuestionDataProps {
             en?: string,
             ru: string 
         }
+        isCorrect: Boolean
     }[];
+}
+
+declare interface QuestionPropsMutation extends QuestionDataProps {
+    authorId?: string,
+    hasOptions: boolean,
+    category: {
+        _id: string
+    }
+}
+
+declare interface Question {
+    
 }
 
 // declare interface Quiz {
@@ -138,3 +151,5 @@ declare interface QuizData {
     quizData: QuizCardProps[]
 }
 
+
+  

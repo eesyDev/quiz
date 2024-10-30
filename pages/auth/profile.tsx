@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useTransition, useState } from 'react';
 import Layout from '../../components/Layout';
 import QuizCard from '../../components/QuizCard';
 import QuestionCard from '../../components/QuestionCard';
 import { useSession, getSession } from 'next-auth/react';
+import QuestionForm from '@/components/QuestionForm';
 import { useDispatch } from 'react-redux';
 import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
 import { client } from '@/utils/client';
 import { userQuery } from '@/utils/queries';
 import { useRouter } from 'next/router';
 import { Session } from "next-auth";
+import { useTranslation } from 'next-i18next';
 import { GetServerSidePropsContext } from "next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +38,8 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 	const currentLocale = locale as 'ru' | 'en';
 	const { data: session, status } = useSession();
 	const dispatch = useDispatch();
+	const { t } = useTranslation('common');
+	const [isOpenForm, setIsOpenForm] = useState(false)
 
     const handleAnswerSelect = (key: string, answer: string) => {
         dispatch(selectAnswer({ key, answer }));
@@ -46,11 +50,11 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
     };
 
 	if (status === 'loading') {
-		return <div>Загрузка...</div>;
+		return <div>{t("loading")}</div>;
 	}
 
 	if (!session) {
-		return <div>Пожалуйста, войдите в систему, чтобы просмотреть профиль.</div>;
+		return <div>{t("please_log_in")}</div>;
 	}
 	
 
@@ -65,14 +69,28 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 					<img src={image} alt={userName} style={{ borderRadius: '50%', width: '150px' }} />
 					<h1 className="text-3xl font-bold  mt-8">Settings {userName}</h1>
 					<p className="text-muted-foreground mt-2">
-						Manage your account settings and preferences.
+						{t("profile_text")}
 					</p>
+					<div className="profile-actions">
+						<AlertDialog open={isOpenForm} onOpenChange={setIsOpenForm}>
+						<AlertDialogTrigger>
+							<Button variant="secondary">{t("create_question")}</Button>
+						</AlertDialogTrigger>
+						<AlertDialogContent>
+							<QuestionForm/>
+							<AlertDialogFooter>
+							<AlertDialogCancel onClick={() => setIsOpenForm(false)}>Отмена</AlertDialogCancel>
+						</AlertDialogFooter>
+						</AlertDialogContent>
+						
+						</AlertDialog>
+					</div>
 				</div>
 				<Tabs className="space-y-6 mt-16" defaultValue="quizes">
 					<TabsList>
-						<TabsTrigger value="quizes">Мои Квизы</TabsTrigger>
-						<TabsTrigger value="questions">Мои Вопросы</TabsTrigger>
-						<TabsTrigger value="selfdata">My Info</TabsTrigger>
+						<TabsTrigger value="quizes">{t("my_quizes")}</TabsTrigger>
+						<TabsTrigger value="questions">{t("my_questions")}</TabsTrigger>
+						<TabsTrigger value="selfdata">{t("self_info")}</TabsTrigger>
 					</TabsList>
 					<TabsContent value="quizes" className="space-y-6">
 					<div className="quiz-wrapper grid-cols-1 grid xl:grid-cols-4 gap-6 md:grid-cols-3 mt-8">
@@ -87,7 +105,7 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 							/>
 						))
 					) : (
-						<p>У вас пока нет квизов.</p>
+						<p>{t("no_quiz_yet")}</p>
 					)}
 					</div>
 				</TabsContent>
@@ -106,12 +124,9 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 								onAnswerSelect={handleAnswerSelect}
 								isAuthor={true}
 							/>
-							// <div key={question._id}>
-							// 	<p>{question.questionText?.[currentLocale]?.[0]?.children?.[0]?.text}</p>
-							// </div>
 						))
 					) : (
-						<p>У вас пока нет вопросов.</p>
+						<p>{t("no_questions_yet")}</p>
 					)}
 					</div>
 				</TabsContent>
