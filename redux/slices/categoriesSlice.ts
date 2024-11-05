@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { client } from '@/utils/client';
-import { allCategoriesQuery } from '@/utils/queries';
+import { client } from '../../utils/client';
+import { allCategoriesQuery } from '../../utils/queries';
 import { RootState } from '../rootReducer';
 
 export const fetchCategories = createAsyncThunk('categories/fetchCategories', async () => {

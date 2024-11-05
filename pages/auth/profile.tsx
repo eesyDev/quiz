@@ -1,17 +1,4 @@
-import React, { useTransition, useState } from 'react';
-import Layout from '../../components/Layout';
-import QuizCard from '../../components/QuizCard';
-import QuestionCard from '../../components/QuestionCard';
-import { useSession, getSession } from 'next-auth/react';
-import QuestionForm from '@/components/QuestionForm';
-import { useDispatch } from 'react-redux';
-import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
-import { client } from '@/utils/client';
-import { userQuery } from '@/utils/queries';
-import { useRouter } from 'next/router';
-import { Session } from "next-auth";
-import { useTranslation } from 'next-i18next';
-import { GetServerSidePropsContext } from "next";
+import React, { useTransition, useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,6 +6,20 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Github, AlertCircle } from "lucide-react";
+import Layout from '../../components/Layout';
+import QuizCard from '../../components/QuizCard';
+import QuestionCard from '../../components/QuestionCard';
+import { useSession, getSession } from 'next-auth/react';
+import QuestionForm from '@/components/QuestionForm';
+import { useDispatch } from 'react-redux';
+import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
+import { client } from '../../utils/client';
+import { userQuery } from '@/utils/queries';
+import { useRouter } from 'next/router';
+import { Session } from "next-auth";
+import { useTranslation } from 'next-i18next';
+import { GetServerSidePropsContext } from "next";
+
 
 import {
 	AlertDialog,
@@ -39,7 +40,7 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 	const { data: session, status } = useSession();
 	const dispatch = useDispatch();
 	const { t } = useTranslation('common');
-	const [isOpenForm, setIsOpenForm] = useState(false)
+	const [isOpenForm, setIsOpenForm] = useState(false);
 
     const handleAnswerSelect = (key: string, answer: string) => {
         dispatch(selectAnswer({ key, answer }));
@@ -76,7 +77,7 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 						<AlertDialogTrigger>
 							<Button variant="secondary">{t("create_question")}</Button>
 						</AlertDialogTrigger>
-						<AlertDialogContent>
+						<AlertDialogContent className='overflow-y-auto max-h-128'>
 							<QuestionForm/>
 							<AlertDialogFooter>
 							<AlertDialogCancel onClick={() => setIsOpenForm(false)}>Отмена</AlertDialogCancel>

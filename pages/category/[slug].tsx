@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Layout, QuizCard } from '@/components';
+import Layout from '../../components/Layout';
+import QuizCard from '../../components/QuizCard'
 import axios from 'axios';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '../../utils';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { selectCategories, fetchCategories } from '@/redux/slices/categoriesSlice';
+import { selectCategories, fetchCategories } from '../../redux/slices/categoriesSlice';
 
 const CategoryItem = ({ data }: { data: CategoryPropsData }) => {
     const { t } = useTranslation('common');

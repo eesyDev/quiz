@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config = {
-    darkMode: ['selector', '[data-theme="dark"]', 'class'],
+    darkMode: ['selector', '[data-theme="dark"]'],
     content: [
         "./pages/**/*.{ts,tsx}",
         "./components/**/*.{ts,tsx}",
@@ -12,7 +12,7 @@ const config = {
     prefix: "",
     theme: {
     	container: {
-    		center: 'true',
+    		center: true,
     		padding: '2rem',
     		screens: {
     			'2xl': '1400px'
@@ -82,10 +82,13 @@ const config = {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
     			sm: 'calc(var(--radius) - 4px)'
-    		}
+    		},
+			spacing: {
+				'128': '32rem',
+			  }
     	}
     },
-    plugins: [require("tailwindcss-animate")]
+    plugins: [require("tailwindcss-animate"), require('@tailwindcss/forms')]
 } satisfies Config;
 
 export default config

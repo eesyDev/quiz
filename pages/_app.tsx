@@ -6,7 +6,7 @@ import { appWithTranslation } from 'next-i18next';
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { SessionProvider } from 'next-auth/react';
 import { Inter } from "next/font/google";
-import store from "@/redux/store";
+import store from "../redux/store";
 
 
 const inter = Inter({ subsets: ["latin",  "cyrillic"], variable: '--font-inter' });

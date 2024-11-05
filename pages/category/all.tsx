@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { selectCategories, fetchCategories } from '@/redux/slices/categoriesSlice';
+import { selectCategories, fetchCategories } from '../../redux/slices/categoriesSlice';
 import Link from 'next/link';
 import Image from 'next/image';
-import { urlFor } from '@/utils/client';
-import { AppDispatch } from '@/redux/store';
-import { RootState } from '@/redux/rootReducer';
+import { urlFor } from '../../utils/client';
+import { AppDispatch } from '.s./../redux/store';
+import { RootState } from '../../redux/rootReducer';
 import { useSelector, useDispatch } from 'react-redux';
-import { Layout } from '@/components';
+import Layout from '../../components/Layout';
 import { useTranslation } from 'next-i18next';
 
 const all = () => {

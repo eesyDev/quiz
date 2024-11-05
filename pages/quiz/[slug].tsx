@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import QuestionCard from '../../components/QuestionCard';
-import { BASE_URL } from '@/utils';
+import { BASE_URL } from '../../utils';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
+import { selectAnswer, nextQuestion } from '../../redux/slices/quizAnswersSlice';
 
 const QuizDetail = ({ data }: { data: QuizData }) => {
     const { locale } = useRouter();

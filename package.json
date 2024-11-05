@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "@sanity/cli": "^3.57.3",
     "@sanity/image-url": "^1.0.2",
+    "@tailwindcss/forms": "^0.5.9",
     "@types/next-auth": "^3.13.0",
     "@types/prismjs": "^1.26.4",
     "autoprefixer": "^10.4.20",

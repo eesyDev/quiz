@@ -378,6 +378,11 @@ a {
   position: relative;
   z-index: 2;
 }
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
 @media screen and (min-width: 1024px) {
   .web-grid-row-4 {
       grid-template-columns: repeat(4, 1fr);
