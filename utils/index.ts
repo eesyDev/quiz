@@ -13,15 +13,19 @@ export const sideMenu = {
         },
         {
             name: "Quizes",
-            link: "/quiz"
+            link: "/quiz/all"
         },
         {
             name: "Account",
-            link: "/account"
+            link: "/auth/profile"
         },
         {
             name: "Blog",
             link: "/blog"
+        },
+        {
+            name: "Questions Lib",
+            link: "questions/all"
         }
     ],
     ru: [
@@ -35,15 +39,19 @@ export const sideMenu = {
         },
         {
             name: "Квизы",
-            link: "/quiz"
+            link: "/quiz/all"
         },
         {
             name: "Личный кабинет",
-            link: "/account"
+            link: "/auth/profile"
         },
         {
             name: "Блог",
             link: "/blog"
+        },
+        {
+            name: "Библиотека вопросов",
+            link: "questions/all"
         }
     ]
 }

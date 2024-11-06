@@ -20,6 +20,7 @@ const config = {
     	},
     	extend: {
     		colors: {
+				blackOpacity: 'rgba(0, 0, 0, 0.8)',
     			pink: {
     				'100': '#fd356e'
     			},
@@ -76,7 +77,8 @@ const config = {
     				'3': 'hsl(var(--chart-3))',
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
-    			}
+    			},
+				
     		},
     		borderRadius: {
     			lg: 'var(--radius)',
@@ -85,7 +87,21 @@ const config = {
     		},
 			spacing: {
 				'128': '32rem',
-			  }
+			},
+			keyframes: {
+				'fade-in': {
+				  '0%': { opacity: '0' },
+				  '100%': { opacity: '1' },
+				},
+				'fade-out': {
+				  '0%': { opacity: '1' },
+				  '100%': { opacity: '0' },
+				},
+			  },
+			  animation: {
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+			  },
     	}
     },
     plugins: [require("tailwindcss-animate"), require('@tailwindcss/forms')]

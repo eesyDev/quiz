@@ -31,6 +31,8 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
+	AlertDialogPortal,
+	AlertDialogOverlay
 } from "@/components/ui/alert-dialog";
 
 
@@ -57,6 +59,20 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 	if (!session) {
 		return <div>{t("please_log_in")}</div>;
 	}
+
+// 	useEffect(() => {
+//   const handleClickOutside = (event) => {
+//     if (isOpenForm && !event.target.closest('.alert-dialog-content')) {
+//       setIsOpenForm(false);
+//     }
+//   };
+
+//   document.addEventListener('click', handleClickOutside);
+
+//   return () => {
+//     document.removeEventListener('click', handleClickOutside);
+//   };
+// }, [isOpenForm]);
 	
 
 	// Данные пользователя из Sanity
@@ -73,17 +89,21 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 						{t("profile_text")}
 					</p>
 					<div className="profile-actions">
-						<AlertDialog open={isOpenForm} onOpenChange={setIsOpenForm}>
+						<AlertDialog open={isOpenForm} onOpenChange={setIsOpenForm} >
 						<AlertDialogTrigger>
 							<Button variant="secondary">{t("create_question")}</Button>
 						</AlertDialogTrigger>
-						<AlertDialogContent className='overflow-y-auto max-h-128'>
+						
+						<AlertDialogPortal>
+						<AlertDialogOverlay className="fixed inset-0 bg-black-text bg-opacity-80 z-50" />
+						<AlertDialogContent className="alert-dialog-content overflow-y-auto max-h-128">
+							<AlertDialogTitle>Create question</AlertDialogTitle>
 							<QuestionForm/>
 							<AlertDialogFooter>
 							<AlertDialogCancel onClick={() => setIsOpenForm(false)}>Отмена</AlertDialogCancel>
 						</AlertDialogFooter>
 						</AlertDialogContent>
-						
+						</AlertDialogPortal>
 						</AlertDialog>
 					</div>
 				</div>

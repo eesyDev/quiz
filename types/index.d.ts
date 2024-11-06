@@ -153,3 +153,15 @@ declare interface QuizData {
 
 
   
+declare interface LevelSelect {
+    _id: string;
+    title: {
+      ru: string;
+      en: string;
+    };
+  }
+  
+declare interface CategorySelect {
+    _id: string;
+    title: string
+  }

@@ -9,8 +9,8 @@ const QuestionForm = () => {
 		ru: [{ children: [{ text: '' }] }],
 		en: [{ children: [{ text: '' }] }],
 	});
-	const [levels, setLevels] = useState([]);
-	const [categories, setCategories] = useState([]);
+	const [levels, setLevels] = useState<LevelSelect[]>([]);
+	const [categories, setCategories] = useState<CategorySelect[]>([]);
 	const [answers, setAnswers] = useState([{ answerText: { ru: '', en: '' }, isCorrect: false }]);
 	const [hasOptions, setHasOptions] = useState(false);
 	const [levelId, setLevelId] = useState('');
@@ -25,7 +25,7 @@ const QuestionForm = () => {
 		categoryId: false,
 	  });
 
-console.log(levels)
+	console.log(categories)
 	  useEffect(() => {
 		const loadLevels = async () => {
 		  const levelsData = await fetchLevels();
@@ -203,7 +203,7 @@ console.log(levels)
 						<option value="">Выберите категорию</option>
 						{categories.map((category) => (
 							<option key={category._id} value={category._id}>
-							{category.title.ru}
+							{category.title}
 							</option>
 						))}
 						</select>
