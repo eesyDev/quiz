@@ -19,8 +19,6 @@ import { useRouter } from 'next/router';
 import { Session } from "next-auth";
 import { useTranslation } from 'next-i18next';
 import { GetServerSidePropsContext } from "next";
-
-
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -59,25 +57,7 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 	if (!session) {
 		return <div>{t("please_log_in")}</div>;
 	}
-
-// 	useEffect(() => {
-//   const handleClickOutside = (event) => {
-//     if (isOpenForm && !event.target.closest('.alert-dialog-content')) {
-//       setIsOpenForm(false);
-//     }
-//   };
-
-//   document.addEventListener('click', handleClickOutside);
-
-//   return () => {
-//     document.removeEventListener('click', handleClickOutside);
-//   };
-// }, [isOpenForm]);
-	
-
-	// Данные пользователя из Sanity
 	const { userName, email, image, quizzes, questions } = userData;
-	console.log(userData)
 	return (
 		<Layout>
 			<div className="container py-10">
@@ -162,11 +142,11 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 };
 
 export default Profile;
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-	// Получаем сессию пользователя
 	const session = await getSession(context);
-
+	const locale = context.locale || 'ru';
 	if (!session) {
 		return {
 			redirect: {
@@ -175,19 +155,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 			},
 		};
 	}
-
-	// Получаем ID пользователя из сессии
 	const userId = (session as Session)?.user?.email?.replace(/[^a-zA-Z0-9_]/g, "") ?? '';
-
-	// Запрашиваем все данные пользователя из Sanity, включая квизы и вопросы
 
 	const userQ = userQuery(userId)
 	const userData = await client.fetch(userQ);
 
-	// Передаем данные в компонент через props
 	return {
 		props: {
 			userData,
+			...(await serverSideTranslations(locale, ['common'])),
 		},
 	};
 }

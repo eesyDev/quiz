@@ -58,10 +58,8 @@ const Header = () => {
             role: 'student'
         }
         try {
-            // Добавляем пользователя в Sanity
             await client.createIfNotExists(user);
             console.log('OK')
-            // Обновляем состояние в Redux
             dispatch(setAuthState({ 
                 data: user, 
                 isLoggedIn: true 

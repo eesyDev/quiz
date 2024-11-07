@@ -25,7 +25,7 @@ export const sideMenu = {
         },
         {
             name: "Questions Lib",
-            link: "questions/all"
+            link: "/questions/all"
         }
     ],
     ru: [
@@ -51,7 +51,7 @@ export const sideMenu = {
         },
         {
             name: "Библиотека вопросов",
-            link: "questions/all"
+            link: "/questions/all"
         }
     ]
 }

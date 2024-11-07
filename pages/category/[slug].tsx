@@ -100,14 +100,14 @@ export const getServerSideProps = async ({ params: { slug, level } }: { params: 
         const res = await axios.get(`${BASE_URL}/api/${slug}`, {params: { level: level || null }});
         return {
             props: {
-                data: res.data, // Передача данных через props
+                data: res.data,
             },
         };
     } catch (error) {
         console.error(error);
         return {
             props: {
-                data: [], // Передача пустого массива в случае ошибки
+                data: [],
                 error: 'Failed to fetch data',
             },
         };

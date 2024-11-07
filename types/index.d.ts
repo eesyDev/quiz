@@ -76,34 +76,6 @@ declare interface QuestionPropsMutation extends QuestionDataProps {
     }
 }
 
-declare interface Question {
-    
-}
-
-// declare interface Quiz {
-//     title: {
-//         en?: string,
-//         ru: string 
-//     },
-//     category: string
-// }
-
-declare interface CategoryPropsData {
-    levels: LevelDataProps[],
-    allQuestions: QuestionDataProps[],
-    questionsByLevel: QuestionDataProps[],
-    quizData: Quiz[]
-}
-
-declare interface Category {
-    title: string,
-    _id: string,
-    title: string,
-    logo: object,
-    slug: {
-        current: string
-    },
-}
 declare interface QuestionProps {
     _id: string,
     title: {
@@ -129,6 +101,26 @@ declare interface QuestionProps {
     isAuthor: boolean
 }
 
+declare interface Question {
+    
+}
+
+declare interface CategoryPropsData {
+    levels: LevelDataProps[],
+    allQuestions: QuestionDataProps[],
+    questionsByLevel: QuestionDataProps[],
+    quizData: Quiz[]
+}
+
+declare interface Category {
+    title: string,
+    _id: string,
+    title: string,
+    logo: object,
+    slug: {
+        current: string
+    },
+}
 interface Answer {
     answerText: {
       en?: string;

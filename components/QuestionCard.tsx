@@ -6,7 +6,7 @@ import { RootState } from '@/redux/rootReducer';
 import Markdown from 'react-markdown';
 import { useRouter } from 'next/router';
 
-const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSelect, _id, isAuthor} : QuestionProps) => {
+const QuestionCard = ({ title, level, questionText, answers, locale, onAnswerSelect, _id, isAuthor} : QuestionProps, isQuizStarted: boolean) => {
     const theme = useSelector((state: RootState) => state?.theme?.value);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isSubmitted, setIsSubmitted] = useState(false);

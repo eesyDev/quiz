@@ -73,3 +73,7 @@ export const userQuery = (userId: string) => {
     "questions": *[_type == "question" && author._ref == ^._id]
   }`
 } ;
+
+export const allQuestions = () => {
+  return `*[_type == "question"]`
+}
