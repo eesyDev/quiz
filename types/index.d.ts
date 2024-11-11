@@ -9,7 +9,8 @@ declare interface IUser {
 declare interface IUserExt extends IUser {
     quizzes: QuizDetail[],
     questions: QuestionProps[],
-    userName: string
+    userName: string,
+    role: string
 }
 
 declare interface StateContextType {
@@ -98,7 +99,8 @@ declare interface QuestionProps {
     answers?: Answer[],
     locale: string,
     onAnswerSelect: (questionId: string, answer: string) => void;
-    isAuthor: boolean
+    isAuthor: boolean,
+    isQuizStarted: boolean
 }
 
 declare interface Question {
@@ -157,3 +159,15 @@ declare interface CategorySelect {
     _id: string;
     title: string
   }
+
+  declare namespace JSX {
+    interface IntrinsicElements {
+      'df-messenger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intent?: string;
+        'chat-title'?: string;
+        'agent-id'?: string;
+        'language-code'?: string;
+      };
+    }
+  }
+  

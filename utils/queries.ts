@@ -1,5 +1,7 @@
 export const allUsersQuery = () => {
-    const query = `*[_type == "user"]`;
+    const query = `*[_type == "user"]{
+      userName, email, image, quizzes, questions, role
+    }`;
   
     return query;
   };
@@ -70,7 +72,9 @@ export const userQuery = (userId: string) => {
     email,
     image,
     "quizzes": *[_type == "quiz" && author._ref == ^._id],
-    "questions": *[_type == "question" && author._ref == ^._id]
+    "questions": *[_type == "question" && author._ref == ^._id],
+    role
+
   }`
 } ;
 
