@@ -11,7 +11,7 @@ export default function Document() {
         <NextScript />
         <df-messenger
           intent="WELCOME"
-          chat-title="Test_agent"
+          chat-title="Toxic AI"
           agent-id="236880ec-4bca-4d00-a7fd-05f10948e6c3"
           language-code="ru"
         ></df-messenger>

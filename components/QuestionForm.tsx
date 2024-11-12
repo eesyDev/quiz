@@ -3,7 +3,7 @@ import { createQuestion } from '@/utils/api';
 import { generateSlug } from '../utils';
 import { fetchCategories, fetchLevels } from '../utils/index';
 
-const QuestionForm = () => {
+const QuestionForm = ({ userData } : { userData: IUserExt }) => {
 	const [title, setTitle] = useState({ ru: '', en: '' });
 	const [questionText, setQuestionText] = useState({
 		ru: [{ children: [{ text: '' }] }],
@@ -18,14 +18,9 @@ const QuestionForm = () => {
 	const [formErrors, setFormErrors] = useState('');
 	const [errors, setErrors] = useState({
 		titleRu: false,
-		// titleEn: false,
-		questionTextRu: false,
-		// questionTextEn: false,
 		levelId: false,
 		categoryId: false,
 	  });
-
-	console.log(categories)
 	  useEffect(() => {
 		const loadLevels = async () => {
 		  const levelsData = await fetchLevels();
@@ -55,37 +50,45 @@ const QuestionForm = () => {
 	const validateForm = () => {
 		setErrors({
 			titleRu: !title.ru,
-			questionTextRu: !questionText.ru[0]?.children[0]?.text,
 			levelId: !levelId,
 			categoryId: !categoryId,
 		});
-		return !(!title.ru || !questionText.ru[0]?.children[0]?.text || !levelId || !categoryId);
+		return !(!title.ru || !levelId || !categoryId);
 	};
 	
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+	
 		if (!validateForm()) {
 			setFormErrors('Заполните все обязательные поля.');
 			return;
 		}
+	
 		try {
 			await createQuestion({
-				title,
-				questionText,
+				title: {
+					ru: title.ru,
+					en: title.en
+				},
+				questionText: {
+					ru: questionText.ru,
+					en: questionText.en
+				},
 				slug: { current: generateSlug(title.en) },
 				difficulty: 2,
-				level: { _id: levelId },
-				category: { _id: categoryId },
+				level: levelId, // Передаем только ID, createQuestion обернет его в _ref
+				category: categoryId, // Передаем только ID, createQuestion обернет его в _ref
 				hasOptions,
 				answers: hasOptions ? answers : [],
-				authorId: 'user-id', // ID текущего пользователя
+				author: userData._id // Передаем ID, createQuestion обернет его в _ref
 			});
 			alert('Вопрос успешно создан!');
 		} catch (error) {
 			alert('Ошибка при создании вопроса.');
 		}
 	};
+	
 
 	const handleAnswerChange = (index: number, locale: 'ru' | 'en', value: string) => {
 		setAnswers((prevAnswers) =>
@@ -144,11 +147,7 @@ const QuestionForm = () => {
 						handleQuestionTextChange('ru', e.target.value)
 						setErrors((prev) => ({ ...prev, questionTextRu: !e.target.value }));
 					}}
-					className={`rounded-md border-1 py-1.5 pl-7 pr-20 text-gray-900 ring-inset placeholder:text-gray-400 sm:text-sm/6 w-full ${
-						errors.questionTextRu
-						? 'border-red-500 focus:border-red-500 focus:ring-red-500 ring-red-100'
-						: 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 ring-1' 
-					}`}
+					className={`rounded-md border-1 py-1.5 pl-7 pr-20 text-gray-900 ring-inset placeholder:text-gray-400 sm:text-sm/6 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 ring-1 }`}
 				/>
 			</div>
 			<div className="input-row mt-4">

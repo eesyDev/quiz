@@ -1,6 +1,6 @@
 export const allUsersQuery = () => {
     const query = `*[_type == "user"]{
-      userName, email, image, quizzes, questions, role
+      userName, email, image, quizzes, questions, role, _id
     }`;
   
     return query;
@@ -47,7 +47,8 @@ export const singleQuiz = (slug: string) => {
     slug,
     questions[]->{title, _id, answers[], questionText},
     category->{title, slug},
-    level->{title, _id}
+    level->{title, _id},
+    author
   }`;
 
   return query
@@ -73,8 +74,8 @@ export const userQuery = (userId: string) => {
     image,
     "quizzes": *[_type == "quiz" && author._ref == ^._id],
     "questions": *[_type == "question" && author._ref == ^._id],
-    role
-
+    role,
+    _id
   }`
 } ;
 

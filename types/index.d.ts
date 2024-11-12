@@ -3,14 +3,14 @@ declare interface IUser {
     _type: string;
     name: string;
     image: string;
-    email: string
+    email: string;
 }
 
 declare interface IUserExt extends IUser {
-    quizzes: QuizDetail[],
-    questions: QuestionProps[],
-    userName: string,
-    role: string
+    quizzes: QuizDetail[];
+    questions: QuestionProps[];
+    userName: string;
+    role: string;
 }
 
 declare interface StateContextType {
@@ -30,144 +30,106 @@ declare interface LocaleState {
     value: string; 
 }
 
+declare interface Title {
+    ru: string;
+    en?: string;
+}
+
+declare interface Slug {
+    current: string;
+}
+
+declare interface TextBlock {
+    children: { text: string }[];
+}
+
 declare interface LevelDataProps {
-    title: {
-        ru: string,
-        en: string
-    },
-    slug: {
-        current: string
-    },
-    difficulty: number,
-    _id: string
+    title: Title;
+    slug: Slug;
+    difficulty: number;
+    _id: string;
+}
+
+declare interface Answer {
+    answerText: Title;
+    isCorrect: boolean;
+}
+
+declare interface QuestionText {
+    ru: TextBlock[];
+    en?: TextBlock[];
 }
 
 declare interface QuestionDataProps {
-    title: {
-        ru: string;
-        en: string;
-    };
-    slug: {
-        current: string;
-    };
+    title: Title;
+    slug: Slug;
     difficulty: number;
     level: any;
-    questionText?: {
-        ru: {
-            children: { text: string }[];
-        }[];
-        en: {
-            children: { text: string }[];
-        }[];
-    } | undefined;
-    answers?: {
-        answerText: {
-            en?: string,
-            ru: string 
-        }
-        isCorrect: Boolean
-    }[];
+    questionText?: QuestionText;
+    answers?: Answer[];
 }
 
 declare interface QuestionPropsMutation extends QuestionDataProps {
-    authorId?: string,
-    hasOptions: boolean,
-    category: {
-        _id: string
-    }
+    author?: string;
+    hasOptions: boolean;
+    category: string;
 }
 
 declare interface QuestionProps {
-    _id: string,
-    title: {
-        en?: string,
-        ru: string 
-    },
-    level: number | string,
-    questionText?: {
-        en?: [
-            {children: [
-                {text: string}
-            ]}
-        ],
-        ru: [
-            {children: [
-                {text: string}
-            ]}
-        ],
-    },
-    answers?: Answer[],
-    locale: string,
+    _id: string;
+    title: Title;
+    level: number | string;
+    questionText?: QuestionText;
+    answers?: Answer[];
+    locale: string;
     onAnswerSelect: (questionId: string, answer: string) => void;
-    isAuthor: boolean,
-    isQuizStarted: boolean
-}
-
-declare interface Question {
-    
+    isAuthor: boolean;
+    isQuizStarted: boolean;
 }
 
 declare interface CategoryPropsData {
-    levels: LevelDataProps[],
-    allQuestions: QuestionDataProps[],
-    questionsByLevel: QuestionDataProps[],
-    quizData: Quiz[]
+    levels: LevelDataProps[];
+    allQuestions: QuestionDataProps[];
+    questionsByLevel: QuestionDataProps[];
+    quizData: Quiz[];
 }
 
 declare interface Category {
-    title: string,
-    _id: string,
-    title: string,
-    logo: object,
-    slug: {
-        current: string
-    },
+    _id: string;
+    title: string;
+    logo: object;
+    slug: Slug;
 }
-interface Answer {
-    answerText: {
-      en?: string;
-      ru: string;
-    };
-  }
 
 declare interface QuizCardProps {
-    title: {
-        en?: string,
-        ru: string 
-    },
-    icon: string,
-    // category: string,
-    slug: string,
-    questions: QuestionProps[]
+    title: Title;
+    icon: string;
+    slug: string;
+    author: string;
+    questions: QuestionProps[];
 }
 
 declare interface QuizData {
-    quizData: QuizCardProps[]
+    quizData: QuizCardProps[];
 }
 
-
-  
 declare interface LevelSelect {
     _id: string;
-    title: {
-      ru: string;
-      en: string;
-    };
-  }
-  
+    title: Title;
+}
+
 declare interface CategorySelect {
     _id: string;
-    title: string
-  }
+    title: string;
+}
 
-  declare namespace JSX {
+declare namespace JSX {
     interface IntrinsicElements {
-      'df-messenger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        intent?: string;
-        'chat-title'?: string;
-        'agent-id'?: string;
-        'language-code'?: string;
-      };
+        'df-messenger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+            intent?: string;
+            'chat-title'?: string;
+            'agent-id'?: string;
+            'language-code'?: string;
+        };
     }
-  }
-  
+}

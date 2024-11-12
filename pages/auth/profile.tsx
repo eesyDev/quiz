@@ -8,14 +8,14 @@ import { useSession, getSession } from 'next-auth/react';
 import { useDispatch } from 'react-redux';
 import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
 import { client } from '../../utils/client';
-import { userQuery } from '@/utils/queries';
+import { userQuery, allQuestions } from '@/utils/queries';
 import { useRouter } from 'next/router';
 import { Session } from "next-auth";
 import { useTranslation } from 'next-i18next';
 import { GetServerSidePropsContext } from "next";
 
 
-const Profile = ({ userData }: { userData: IUserExt }) => {
+const Profile = ({ userData, questionsProps }: { userData: IUserExt, questionsProps : QuestionProps[] }) => {
 	const { locale } = useRouter();
 	const currentLocale = locale as 'ru' | 'en';
 	const { data: session, status } = useSession();
@@ -34,12 +34,12 @@ const Profile = ({ userData }: { userData: IUserExt }) => {
 		return <div>{t("please_log_in")}</div>;
 	}
 	const { userName, email, image, quizzes, questions, role } = userData;
-	console.log(userData)
+	console.log(questionsProps)
 	return (
 		<Layout>
 			<div className="container py-10">
 				{
-					role === 'mentor' ? <MentorDashboard userData={userData}/> : <StudentDashboard/>
+					role === 'mentor' ? <MentorDashboard userData={userData} questionsProps={questionsProps}/> : <StudentDashboard/>
 				}
 			</div>
 		</Layout>
@@ -64,10 +64,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 	const userQ = userQuery(userId)
 	const userData = await client.fetch(userQ);
+	const questionsProps = await client.fetch(allQuestions())
 
 	return {
 		props: {
 			userData,
+			questionsProps,
 			...(await serverSideTranslations(locale, ['common'])),
 		},
 	};
