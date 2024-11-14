@@ -23,3 +23,19 @@ export const createQuestion = async (questionData: QuestionPropsMutation) => {
     throw error;
   }
 };
+
+export const createQuiz = async (quizData: CreateQuizData) => {
+    try {
+        const newQuiz = await client.create({
+            _type: 'quiz',
+            title: quizData.title,
+            questions: quizData.questions.map((id) => ({ _ref: id })),
+            author: { _ref: quizData.author }
+        });
+        console.log('Success', newQuiz)
+        return newQuiz;
+    } catch (error) {
+        console.error("Error creating quiz:", error);
+        throw error;
+    }
+};

@@ -133,3 +133,10 @@ declare namespace JSX {
         };
     }
 }
+
+
+interface CreateQuizData {
+    title: string;
+    questions: string[];
+    author: string; 
+}

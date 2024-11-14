@@ -15,7 +15,7 @@ import {
 	AlertDialogOverlay
 } from "@/components/ui/alert-dialog";
 import QuestionForm from '@/components/QuestionForm';
-import QuizForm from '../components/QuizForm';
+import QuizForm from './QuizForm';
 import QuizCard from '../components/QuizCard';
 import QuestionCard from '../components/QuestionCard';
 import { selectAnswer, nextQuestion } from '@/redux/slices/quizAnswersSlice';
@@ -74,8 +74,12 @@ const MentorDashboard = ({ userData, questionsProps }: { userData: IUserExt, que
                         <AlertDialogOverlay className="fixed inset-0 bg-black-text bg-opacity-80 z-50" />
                         <AlertDialogContent className="alert-dialog-content overflow-y-auto max-h-128">
                         <AlertDialogTitle>{t("create_quiz")}</AlertDialogTitle>
-                        <QuizForm t={t} questionsProps={questionsProps}/>
+                        <QuizForm t={t} questionsProps={questionsProps} userData={userData}/>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel onClick={() => setIsOpenForm(false)}>Отмена</AlertDialogCancel>
+                        </AlertDialogFooter>
                         </AlertDialogContent>
+                        
                         </AlertDialogPortal>
                     </AlertDialog>
                 </div>
